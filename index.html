@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./stylesheets/main.css">
+    <title>Video Player</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="title-bar">
+        <div id="app-icon" class="handle"></div>
+        <div id="app-name" class="handle">Video Player</div>
+        <div id="minimize" class="handle">min</div>
+        <div id="maximize" class="handle">max</div>
+        <div id="close" class="handle">close</div>
+      </div>
+      
+      <div id="app-main">
+        <div id="video-container">
+          <video id="video" src="videos/test-1.mp4"></video>
+        </div>
+        
+        <div id="controls-container">
+          <div id="controls-row-1">
+            <div id="progress-bar">
+              <input type="range" id="progress-bar-input" value="0" step="0.0000000001">
+              <div id="progress-bar-thumb"></div>
+              <div id="progress-bar-progress"></div>
+              <div id="progress-bar-background"></div>
+              <div id="progress-bar-info">00:00</div>
+            </div>
+          </div>
+          <div id="controls-row-2">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="./renderer.js"></script>
+  </body>
+</html>

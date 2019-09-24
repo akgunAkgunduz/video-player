@@ -1,0 +1,14 @@
+{
+  "name": "video-player",
+  "version": "1.0.0",
+  "description": "A video player for Windows",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Akgün Akgündüz",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^6.0.10"
+  }
+}

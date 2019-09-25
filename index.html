@@ -9,18 +9,24 @@
   <body>
     <div id="container">
       <div id="title-bar">
-        <div id="app-icon" class="handle"></div>
-        <div id="app-name" class="handle">Video Player</div>
-        <div id="minimize" class="handle">min</div>
-        <div id="maximize" class="handle">max</div>
-        <div id="close" class="handle">close</div>
+        <div id="app-icon">
+          <div class="handle">icon</div>
+        </div>
+
+        <div id="app-name">
+          <div class="handle">Video Player</div>
+        </div>
+
+        <div id="minimize">min</div>
+        <div id="maximize">max</div>
+        <div id="close">close</div>
       </div>
-      
+
       <div id="app-main">
         <div id="video-container">
           <video id="video" src="videos/test-1.mp4"></video>
         </div>
-        
+
         <div id="controls-container">
           <div id="controls-row-1">
             <div id="progress-bar">
@@ -31,13 +37,16 @@
               <div id="progress-bar-info">00:00</div>
             </div>
           </div>
+
           <div id="controls-row-2">
-            
+            <div id="time-info">00:00/00:00</div>
+            <button id="play-pause-toggle">Play</button>
+            <div id="file-info">Video player</div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <script src="./renderer.js"></script>
   </body>
 </html>

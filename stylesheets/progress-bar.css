@@ -1,0 +1,94 @@
+#progress-bar {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 20px;
+  width: 100%;
+}
+
+#progress-bar-input {
+  width: 100%;
+  height: 20px;
+  z-index: 4;
+  align-self: center;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  background-color: transparent;
+}
+
+#progress-bar-input:hover ~ #progress-bar-thumb {
+  transform: scale(9)
+}
+
+#progress-bar-input:hover ~ #progress-bar-background {
+  height: 6px;
+}
+
+#progress-bar-input:hover ~ #progress-bar-progress {
+  height: 6px;
+}
+
+#progress-bar-input:hover ~ #progress-bar-info {
+  visibility: visible;
+  opacity: 1;
+}
+
+#progress-bar-thumb {
+  position: relative;
+  left: -1px;
+  top: 0;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  z-index: 3;
+  align-self: center;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  background-color: red;
+  transition: transform 0.15s;
+}
+
+#progress-bar-progress {
+  width: 0;
+  height: 2px;
+  z-index: 2;
+  align-self: center;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  background-color: red;
+  transition: height linear 0.1s;
+}
+
+#progress-bar-background {
+  width: 100%;
+  height: 2px;
+  z-index: 1;
+  align-self: center;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  background-color: #ddd;
+  transition: height linear 0.1s;
+}
+
+#progress-bar-info {
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  top: -40px;
+  width: 80px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  padding: 0 8px;
+  text-align: center;
+  background-color: #444;
+  color: #ddd;
+  transition: opacity ease-out 0.25s;
+}

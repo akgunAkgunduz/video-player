@@ -1,0 +1,22 @@
+#title-bar {
+  display: grid;
+  grid-template-columns: 50px 1fr repeat(3, 50px);
+  height: 40px;
+  background-color: #333;
+  color: #ddd;
+  text-align: center;
+  line-height: 40px;
+}
+
+#app-icon {
+  padding-left: 2px;
+  padding-top: 2px;
+}
+
+#app-name {
+  padding-top: 2px;
+}
+
+.handle {
+  -webkit-app-region: drag;
+}

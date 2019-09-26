@@ -4,10 +4,11 @@ let mainWindow
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    width: 1600, 
-    height: 900,
-    minWidth: 800,
-    minHeight: 450,
+    width: 800, 
+    height: 450,
+    minWidth: 400,
+    minHeight: 400,
+    backgroundColor: '#333',
     frame: false,
     show: false,
     webPreferences: {

@@ -2,7 +2,7 @@ const { app, BrowserWindow } = require('electron')
 
 let mainWindow
 
-function createWindow () {
+function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800, 
     height: 450,
@@ -11,6 +11,7 @@ function createWindow () {
     backgroundColor: '#333',
     frame: false,
     show: false,
+    icon: __dirname + '/images/player.ico',
     webPreferences: {
       nodeIntegration: true
     }
@@ -25,17 +26,17 @@ function createWindow () {
     mainWindow.focus()
   })
 
-  mainWindow.on('closed', function () {
+  mainWindow.on('closed', function() {
     mainWindow = null
   })
 }
 
 app.on('ready', createWindow)
 
-app.on('window-all-closed', function () {
+app.on('window-all-closed', function() {
   if (process.platform !== 'darwin') app.quit()
 })
 
-app.on('activate', function () {
+app.on('activate', function() {
   if (mainWindow === null) createWindow()
 })

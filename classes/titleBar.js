@@ -17,11 +17,11 @@ class TitleBar {
       this.elements.maximize.querySelector('i').classList.add('unfold_more')
     })
 
-    this.minimize.addEventListener('click', () => win.minimize())
+    this.elements.minimize.addEventListener('click', () => win.minimize())
 
-    this.maximize.addEventListener('click', () => win.isMaximized() ? win.unmaximize() : win.maximize())
+    this.elements.maximize.addEventListener('click', () => win.isMaximized() ? win.unmaximize() : win.maximize())
 
-    this.close.addEventListener('click', () => win.close())
+    this.elements.close.addEventListener('click', () => win.close())
   }
 }
 

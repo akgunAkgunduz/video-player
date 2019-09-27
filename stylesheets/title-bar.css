@@ -1,22 +1,41 @@
 #title-bar {
   display: grid;
-  grid-template-columns: 50px 1fr repeat(3, 50px);
-  height: 40px;
+  grid-template-columns: 32px 1fr repeat(3, 50px);
+  height: 30px;
   background-color: #333;
   color: #ddd;
-  text-align: center;
-  line-height: 40px;
 }
 
-#app-icon {
-  padding-left: 2px;
-  padding-top: 2px;
+#app-icon .handle {
+  position: relative;
+  top: 2px;
+  height: 28px;
 }
 
-#app-name {
-  padding-top: 2px;
+#app-icon img {
+  position: relative;
+  top: 4px;
+  left: 8px;
+  height: 16px;
+}
+
+#app-name .handle {
+  position: relative;
+  top: 2px;
+  height: 28px;
+  font-size: 14px;
+  line-height: 25px;
 }
 
 .handle {
   -webkit-app-region: drag;
+}
+
+.win-btn {
+  text-align: center;
+}
+
+.win-btn i {
+  font-size: 14px;
+  line-height: 30px;
 }

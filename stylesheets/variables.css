@@ -1,0 +1,9 @@
+:root {
+  --color-dark-primary: #333;
+  --color-light-primary: #ddd;
+  --color-video-background: #000;
+  --color-progress-bar: #f00;
+
+  --height-title-bar: 32px;
+  --height-controls: 96px;
+}

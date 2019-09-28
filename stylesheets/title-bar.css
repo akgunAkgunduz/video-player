@@ -33,6 +33,7 @@
 
 .win-btn {
   text-align: center;
+  transition: background-color 0.25s;
 }
 
 .win-btn i {

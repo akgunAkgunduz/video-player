@@ -27,11 +27,9 @@ class View {
   updateProgressBar(player) {
     this.elements.progressBarInput.value = player.media.currentTime
 
-    const inputWidth = this.elements.progressBarInput.offsetWidth
     const current = player.media.currentTime
     const duration = player.media.duration
 
-    this.elements.progressBarProgress.style.width = `${inputWidth * (current / duration)}px`
     this.elements.progressBarProgress.style.width = `${current * 100 / duration}%`
     this.elements.progressBarThumb.style.left = `${this.elements.progressBarProgress.offsetWidth - 1}px`
   }

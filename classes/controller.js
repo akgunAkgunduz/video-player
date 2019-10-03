@@ -22,8 +22,8 @@ class Controller {
       view.updatePlayPauseToggle(player)
     })
 
-    view.elements.progressBarInput.addEventListener('input', (e) => {
-      player.media.currentTime = e.target.value
+    view.elements.progressBarInput.addEventListener('input', (event) => {
+      player.media.currentTime = event.target.value
 
       view.updateProgressBar(player)
     })
@@ -38,7 +38,11 @@ class Controller {
       view.updatePlayPauseToggle(player)
     })
 
-    window.addEventListener('resize', view.resizeVideo)
+    window.addEventListener('resize', () => {
+      view.resizeVideo()
+      view.updateProgressBar(player)
+    }
+    )
   }
 }
 

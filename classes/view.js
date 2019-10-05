@@ -61,14 +61,14 @@ class View {
     const position = generatePositionText(player.media.currentTime, player.media.duration)
     const duration = generateTimeText(player.media.duration)
 
-    this.elements.timeInfo.innerText = `${position} / ${duration}`
+    this.elements.timeInfo.innerText = `${position}/${duration}`
   }
 
   updatePlayPauseToggle(player) {
     if (player.isPaused) {
-      this.elements.playPauseToggle.innerText = 'Play'
+      this.elements.playPauseToggle.querySelector('i').innerText = 'play_arrow'
     } else {
-      this.elements.playPauseToggle.innerText = 'Pause'
+      this.elements.playPauseToggle.querySelector('i').innerText = 'pause'
     }
   }
 }

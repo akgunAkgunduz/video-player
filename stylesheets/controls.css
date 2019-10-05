@@ -1,34 +1,84 @@
+@import './variables.css';
 @import './progress-bar.css';
 
+.btn {
+  background: transparent;
+  color: var(--color-light-primary);
+}
+
 #controls-container {
-  height: 160px;
-  padding: 4px 16px;
-  background-color: #333;
+  height: var(--height-controls);
+  padding: 4px 16px 12px;
+  background-color: var(--color-dark-primary);
 }
 
 #controls-row-1 {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 #controls-row-2 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 24px 24px 168px 1fr 168px 24px 24px;
+  column-gap: 12px;
+}
+
+#volume-div {
+  display: grid;
+  grid-template-columns: 24px 100px 36px;
+  column-gap: 4px;
+}
+
+#volume {
+  width: 100%;
+  height: 2px;
+  align-self: center;
+  background-color: var(--color-light-primary);
+}
+
+#volume::-webkit-slider-thumb {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background-color: var(--color-light-primary);
+}
+
+#volume-text {
+  color: var(--color-light-primary);
+  font-size: 14px;
+  line-height: 24px;
+  text-align: right;
 }
 
 #time-info {
-  align-self: center;
-  justify-self: center;
+  color: var(--color-light-primary);
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
 }
 
-#play-pause-toggle {
+#speed-div {
+  display: grid;
+  grid-template-columns: 24px 100px 36px;
+  column-gap: 4px;
+}
+
+#speed {
+  width: 100%;
+  height: 2px;
   align-self: center;
-  justify-self: center;
-  width: 66px;
-  height: 66px;
+  background-color: var(--color-light-primary);
+}
+
+#speed::-webkit-slider-thumb {
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
+  background-color: var(--color-light-primary);
 }
 
-#file-info {
-  align-self: center;
-  justify-self: center;
+#speed-text {
+  color: var(--color-light-primary);
+  font-size: 14px;
+  line-height: 24px;
+  text-align: right;
 }

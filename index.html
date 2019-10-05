@@ -47,9 +47,43 @@
           </div>
 
           <div id="controls-row-2">
-            <div id="time-info">00:00/00:00</div>
-            <button id="play-pause-toggle">Play</button>
-            <div id="file-info">Video player</div>
+            <button id="open-file-btn" class="btn" tabindex="-1">
+              <i class="material-icons">eject</i>
+            </button>
+
+            <button id="play-pause-toggle" class="control btn" tabindex="-1">
+              <i class="material-icons">play_arrow</i>
+            </button>
+
+            <div id="volume-div">
+              <button id="mute-btn" class="btn" tabindex="-1">
+                <i class="material-icons">volume_up</i>
+              </button>
+
+              <input type="range" id="volume" min="0" max="100" step="1" value="100" tabindex="-1">
+
+              <div id="volume-text">100%</div>
+            </div>
+
+            <div id="time-info"></div>
+
+            <div id="speed-div">
+              <button id="reset-speed-btn" class="btn" tabindex="-1">
+                <i class="material-icons">directions_run</i>
+              </button>
+
+              <input type="range" id="speed" min="0.50" max="2.50" step="0.05" value="1" tabindex="-1">
+
+              <div id="speed-text">1.00x</div>
+            </div>
+
+            <button id="loop-btn" class="btn" tabindex="-1">
+              <i class="material-icons">loop</i>
+            </button>
+
+            <button id="fullscreen-btn" class="control btn" tabindex="-1">
+              <i class="material-icons">fullscreen</i>
+            </button>
           </div>
         </div>
       </div>

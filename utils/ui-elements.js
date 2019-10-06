@@ -1,4 +1,5 @@
 module.exports = {
+  appTitle: document.getElementById('app-name'),
   videoContainer: document.getElementById('video-container'),
   video: document.getElementById('video'),
   progressBar: document.getElementById('progress-bar'),
@@ -7,6 +8,15 @@ module.exports = {
   progressBarProgress: document.getElementById('progress-bar-progress'),
   progressBarBackground: document.getElementById('progress-bar-background'),
   progressBarInfo: document.getElementById('progress-bar-info'),
-  timeInfo: document.getElementById('time-info'),
+  openFileButton: document.getElementById('open-file-btn'),
   playPauseToggle: document.getElementById('play-pause-toggle'),
+  muteButton: document.getElementById('mute-btn'),
+  volumeSlider: document.getElementById('volume'),
+  volumeText: document.getElementById('volume-text'),
+  timeInfo: document.getElementById('time-info'),
+  resetSpeedButton: document.getElementById('reset-speed-btn'),
+  speedSlider: document.getElementById('speed'),
+  speedText: document.getElementById('speed-text'),
+  loopButton: document.getElementById('loop-btn'),
+  fullscreenButton: document.getElementById('fullscreen-btn')
 }

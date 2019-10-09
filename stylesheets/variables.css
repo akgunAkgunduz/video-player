@@ -1,6 +1,8 @@
 :root {
   --color-dark-primary: #333;
+  --color-dark-secondary: #555;
   --color-light-primary: #ddd;
+  --color-light-secondary: #bbb;
   --color-video-background: #000;
   --color-progress-bar: #f00;
 

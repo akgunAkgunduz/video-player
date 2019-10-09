@@ -2,8 +2,14 @@
   display: grid;
   grid-template-columns: 32px 1fr repeat(3, 50px);
   height: 30px;
-  background-color: #333;
-  color: #ddd;
+  background-color: var(--color-dark-primary);
+  color: var(--color-light-primary);
+  transition: color .1s linear , background-color .1s linear;
+}
+
+#title-bar.blurred {
+  color: gray ;
+  background-color: var(--color-light-primary);
 }
 
 #app-icon .handle {
@@ -33,10 +39,27 @@
 
 .win-btn {
   text-align: center;
-  transition: background-color 0.25s;
+  transition: background-color .1s linear;
+}
+
+.win-btn:hover {
+  background-color: var(--color-dark-secondary);
+}
+
+#title-bar.blurred .win-btn:hover {
+  background-color: var(--color-light-secondary);
+}
+
+.win-btn-close:hover, #title-bar.blurred .win-btn-close:hover {
+  color: white;
+  background-color: red;
 }
 
 .win-btn i {
   font-size: 14px;
   line-height: 30px;
+}
+
+#minimize.correction {
+  background-color: var(--color-dark-primary);
 }

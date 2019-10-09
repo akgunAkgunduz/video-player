@@ -8,11 +8,11 @@ class TitleBar {
 
   setUpEventListeners() {
     win.on('maximize', () => {
-      this.elements.maximize.querySelector('i').innerHTML = 'unfold_less'
+      this.elements.maximize.innerHTML = '&#xE923;'
     })
 
     win.on('unmaximize', () => {
-      this.elements.maximize.querySelector('i').innerHTML = 'unfold_more'
+      this.elements.maximize.innerHTML = '&#xE922;'
     })
 
     win.on('focus', () => {

@@ -1,7 +1,7 @@
 #title-bar {
   display: grid;
-  grid-template-columns: 32px 1fr repeat(3, 50px);
-  height: 30px;
+  grid-template-columns: 32px 1fr repeat(3, 46px);
+  height: var(--height-title-bar);
   background-color: var(--color-dark-primary);
   color: var(--color-light-primary);
   transition: color .1s linear , background-color .1s linear;
@@ -15,12 +15,12 @@
 #app-icon .handle {
   position: relative;
   top: 2px;
-  height: 28px;
+  height: 30px;
 }
 
 #app-icon img {
   position: relative;
-  top: 4px;
+  top: 5px;
   left: 8px;
   height: 16px;
 }
@@ -28,9 +28,9 @@
 #app-name .handle {
   position: relative;
   top: 2px;
-  height: 28px;
-  font-size: 14px;
-  line-height: 25px;
+  height: 30px;
+  font-size: 12px;
+  line-height: 26px;
 }
 
 .handle {
@@ -38,6 +38,9 @@
 }
 
 .win-btn {
+  font-family: Segoe MDL2 Assets;
+  font-size: 10px;
+  line-height: 32px;
   text-align: center;
   transition: background-color .1s linear;
 }
@@ -53,13 +56,4 @@
 .win-btn-close:hover, #title-bar.blurred .win-btn-close:hover {
   color: white;
   background-color: red;
-}
-
-.win-btn i {
-  font-size: 14px;
-  line-height: 30px;
-}
-
-#minimize.correction {
-  background-color: var(--color-dark-primary);
 }

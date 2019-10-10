@@ -4,7 +4,7 @@
   height: var(--height-title-bar);
   background-color: var(--color-dark-primary);
   color: var(--color-light-primary);
-  transition: color .1s linear , background-color .1s linear;
+  transition: color .1s linear, background-color .1s linear;
 }
 
 #title-bar.blurred {
@@ -45,15 +45,15 @@
   transition: background-color .1s linear;
 }
 
-.win-btn:hover {
+.win-btn.hovered {
   background-color: var(--color-dark-secondary);
 }
 
-#title-bar.blurred .win-btn:hover {
+#title-bar.blurred .win-btn.hovered {
   background-color: var(--color-light-secondary);
 }
 
-.win-btn-close:hover, #title-bar.blurred .win-btn-close:hover {
+.win-btn-close.hovered, #title-bar.blurred .win-btn-close.hovered {
   color: white;
   background-color: red;
 }

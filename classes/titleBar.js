@@ -7,6 +7,10 @@ class TitleBar {
   }
 
   setUpEventListeners() {
+    win.on('minimize', () => {
+      this.elements.minimize.classList.remove('hovered')
+    })
+
     win.on('maximize', () => {
       this.elements.maximize.innerHTML = '&#xE923;'
     })
@@ -23,11 +27,27 @@ class TitleBar {
       this.elements.bar.classList.add('blurred')
     })
 
-    this.elements.minimize.addEventListener('click', () => win.minimize())
+    this.elements.minimize.addEventListener('click', () => {
+      win.minimize()
+    })
 
-    this.elements.maximize.addEventListener('click', () => win.isMaximized() ? win.unmaximize() : win.maximize())
+    this.elements.maximize.addEventListener('click', () => {
+      win.isMaximized() ? win.unmaximize() : win.maximize()
+    })
 
-    this.elements.close.addEventListener('click', () => win.close())
+    this.elements.close.addEventListener('click', () => {
+      win.close()
+    })
+
+    this.elements.buttons.forEach(button => {
+      button.addEventListener('mouseenter', () => {
+        button.classList.add('hovered')
+      })
+
+      button.addEventListener('mouseleave', () => {
+        button.classList.remove('hovered')
+      })
+    })
   }
 }
 

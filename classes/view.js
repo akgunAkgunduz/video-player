@@ -76,6 +76,11 @@ class View {
     this.elements.volumeSlider.value = volume
     this.elements.volumeText.textContent = Math.floor(volume * 100) + '%'
   }
+
+  updateSpeed(speed) {
+    this.elements.speedSlider.value = speed
+    this.elements.speedText.textContent = speed.toFixed(2) + 'x'
+  }
 }
 
 module.exports = View

@@ -26,6 +26,10 @@ class Controller {
       view.updateVolume(player.media.volume)
     })
 
+    player.media.addEventListener('ratechange', () => {
+      view.updateSpeed(player.media.playbackRate)
+    })
+
     view.elements.progressBarInput.addEventListener('input', (event) => {
       player.media.currentTime = event.target.value
 
@@ -44,6 +48,10 @@ class Controller {
 
     view.elements.volumeSlider.addEventListener('input', (event) => {
       player.media.volume = event.target.value
+    })
+
+    view.elements.speedSlider.addEventListener('input', (event) => {
+      player.media.playbackRate = event.target.value
     })
 
     window.addEventListener('resize', () => {

@@ -22,6 +22,10 @@ class Controller {
       view.updatePlayPauseToggle(player)
     })
 
+    player.media.addEventListener('volumechange', () => {
+      view.updateVolume(player.media.volume)
+    })
+
     view.elements.progressBarInput.addEventListener('input', (event) => {
       player.media.currentTime = event.target.value
 
@@ -36,6 +40,10 @@ class Controller {
       player.toggle()
 
       view.updatePlayPauseToggle(player)
+    })
+
+    view.elements.volumeSlider.addEventListener('input', (event) => {
+      player.media.volume = event.target.value
     })
 
     window.addEventListener('resize', () => {

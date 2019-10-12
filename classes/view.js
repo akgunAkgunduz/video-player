@@ -71,6 +71,11 @@ class View {
       this.elements.playPauseToggle.querySelector('i').innerText = 'pause'
     }
   }
+
+  updateVolume(volume) {
+    this.elements.volumeSlider.value = volume
+    this.elements.volumeText.textContent = Math.floor(volume * 100) + '%'
+  }
 }
 
 module.exports = View

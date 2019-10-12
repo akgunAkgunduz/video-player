@@ -54,6 +54,10 @@ class Controller {
       player.media.playbackRate = event.target.value
     })
 
+    view.elements.resetSpeedButton.addEventListener('click', () => {
+      player.media.playbackRate = 1
+    })
+
     window.addEventListener('resize', () => {
       view.resizeVideo()
       view.updateProgressBar(player)

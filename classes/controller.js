@@ -24,6 +24,7 @@ class Controller {
 
     player.media.addEventListener('volumechange', () => {
       view.updateVolume(player.media.volume)
+      view.updateMuteButton(player.media.volume)
     })
 
     player.media.addEventListener('ratechange', () => {
@@ -44,6 +45,10 @@ class Controller {
       player.toggle()
 
       view.updatePlayPauseToggle(player)
+    })
+
+    view.elements.muteButton.addEventListener('click', () => {
+      player.media.volume = !player.media.volume
     })
 
     view.elements.volumeSlider.addEventListener('input', (event) => {

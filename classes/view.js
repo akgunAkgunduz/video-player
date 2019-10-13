@@ -72,6 +72,14 @@ class View {
     }
   }
 
+  updateMuteButton(volume) {
+    if (volume > 0) {
+      this.elements.muteButton.querySelector('i').innerText = 'volume_up'
+    } else {
+      this.elements.muteButton.querySelector('i').innerText = 'volume_off'
+    }
+  }
+
   updateVolume(volume) {
     this.elements.volumeSlider.value = volume
     this.elements.volumeText.textContent = Math.floor(volume * 100) + '%'

@@ -89,6 +89,10 @@ class View {
     this.elements.speedSlider.value = speed
     this.elements.speedText.textContent = speed.toFixed(2) + 'x'
   }
+
+  updateLoopButton() {
+    this.elements.loopButton.classList.toggle('on')
+  }
 }
 
 module.exports = View

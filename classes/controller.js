@@ -63,6 +63,12 @@ class Controller {
       player.media.playbackRate = 1
     })
 
+    view.elements.loopButton.addEventListener('click', () => {
+      player.media.loop = !player.media.loop
+
+      view.updateLoopButton()
+    })
+
     window.addEventListener('resize', () => {
       view.resizeVideo()
       view.updateProgressBar(player)

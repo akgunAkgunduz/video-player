@@ -108,3 +108,12 @@
   line-height: 24px;
   text-align: right;
 }
+
+#loop-btn {
+  transition: text-shadow 0.25s;
+}
+
+#loop-btn.on {
+  color: yellow;
+  text-shadow: 0 0 1px var(--color-dark-primary), 0 0 4px yellow;
+}

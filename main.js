@@ -1,13 +1,18 @@
 const { app, BrowserWindow } = require('electron')
+const windowStateKeeper = require('electron-window-state')
 
 let mainWindow
 
 function createWindow() {
+  let mainWindowState = windowStateKeeper()
+
   mainWindow = new BrowserWindow({
     width: 640,
     height: 360,
     minWidth: 640,
     minHeight: 360,
+    x: mainWindowState.x,
+    y: mainWindowState.y,
     backgroundColor: '#333',
     frame: false,
     show: false,
@@ -20,6 +25,8 @@ function createWindow() {
   mainWindow.loadFile('index.html')
 
   mainWindow.webContents.openDevTools({ mode: 'detach' })
+
+  mainWindowState.manage(mainWindow)
 
   mainWindow.once('ready-to-show', function() {
     mainWindow.show()

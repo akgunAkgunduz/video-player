@@ -1,5 +1,6 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const windowStateKeeper = require('electron-window-state')
+const supportedFileTypes = require('./utils/supported-file-types')
 
 let mainWindow
 
@@ -46,4 +47,17 @@ app.on('window-all-closed', function() {
 
 app.on('activate', function() {
   if (mainWindow === null) createWindow()
+})
+
+ipcMain.on('open-file-dialog', (e) => {
+  dialog.showOpenDialog(mainWindow, {
+    filters: [
+      { name: 'Video files', extensions: supportedFileTypes }
+    ],
+    properties: ['openFile']
+  }, (files) => {
+    if (files) {
+      e.sender.send('selected-file', files[0])
+    }
+  })
 })

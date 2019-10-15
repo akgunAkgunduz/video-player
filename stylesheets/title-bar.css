@@ -1,6 +1,7 @@
 #title-bar {
   display: grid;
-  grid-template-columns: 32px 1fr repeat(3, 46px);
+  grid-template-columns: 32px 1fr 46px 46px 46px;
+  width: 100vw;
   height: var(--height-title-bar);
   background-color: var(--color-dark-primary);
   color: var(--color-light-primary);
@@ -28,9 +29,13 @@
 #app-name .handle {
   position: relative;
   top: 2px;
+  width: calc(100vw - 170px);
   height: 30px;
   font-size: 12px;
   line-height: 26px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .handle {

@@ -1,5 +1,5 @@
 module.exports = {
-  appTitle: document.getElementById('app-name'),
+  appTitle: document.getElementById('app-name').querySelector('.handle'),
   videoContainer: document.getElementById('video-container'),
   video: document.getElementById('video'),
   progressBar: document.getElementById('progress-bar'),

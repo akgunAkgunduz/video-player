@@ -1,6 +1,12 @@
+const path = require('path')
+
+const { ipcRenderer } = require('electron')
+
 const Player = require('./player')
 const View = require('./view')
+
 const uiElements = require('../utils/ui-elements')
+const { sanitizeFilePath } = require('../utils/helpers')
 
 const player = new Player(document.getElementById('video'))
 const view = new View(uiElements)
@@ -9,8 +15,11 @@ class Controller {
   setUpEventListeners() {
     player.media.addEventListener('loadedmetadata', () => {
       view.elements.progressBarInput.max = player.media.duration
-
       view.resizeVideo()
+    })
+
+    player.media.addEventListener('play', () => {
+      view.updatePlayPauseToggle(player)
     })
 
     player.media.addEventListener('timeupdate', () => {
@@ -39,6 +48,10 @@ class Controller {
 
     view.elements.progressBarInput.addEventListener('mousemove', (event) => {
       view.showProgressBarInfo(player, event)
+    })
+
+    view.elements.openFileButton.addEventListener('click', () => {
+      ipcRenderer.send('open-file-dialog')
     })
 
     view.elements.playPauseToggle.addEventListener('click', () => {
@@ -72,8 +85,14 @@ class Controller {
     window.addEventListener('resize', () => {
       view.resizeVideo()
       view.updateProgressBar(player)
-    }
-    )
+    })
+
+    ipcRenderer.on('selected-file', (e, filePath) => {
+      if (filePath) {
+        player.media.src = sanitizeFilePath(filePath)
+        view.elements.appTitle.textContent = path.basename(filePath)
+      }
+    })
   }
 }
 

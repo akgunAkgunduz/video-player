@@ -1,4 +1,4 @@
-const { generatePositionText, generateTimeText } = require('../utils/helpers')
+const { formatSeconds } = require('../utils/helpers')
 
 class View {
   constructor(uiElements) {
@@ -41,11 +41,11 @@ class View {
     const infoWidth = this.elements.progressBarInfo.offsetWidth  
 
     if (cursorPositionRelative < 0) {
-      this.elements.progressBarInfo.innerText = generateTimeText(0)  
+      this.elements.progressBarInfo.innerText = formatSeconds(0)  
     } else if (cursorPositionRelative > inputWidth) {
-      this.elements.progressBarInfo.innerText = generateTimeText(player.media.duration)
+      this.elements.progressBarInfo.innerText = formatSeconds(player.media.duration)
     } else {
-      this.elements.progressBarInfo.innerText = generateTimeText(cursorPositionTime)
+      this.elements.progressBarInfo.innerText = formatSeconds(cursorPositionTime)
     }
 
     if (event.clientX < event.target.parentNode.offsetLeft + (infoWidth / 2) ) {
@@ -58,8 +58,8 @@ class View {
   }
 
   updateTimeInfo(player) {
-    const position = generatePositionText(player.media.currentTime, player.media.duration)
-    const duration = generateTimeText(player.media.duration)
+    const position = formatSeconds(player.media.currentTime, player.media.duration)
+    const duration = formatSeconds(player.media.duration)
 
     this.elements.timeInfo.innerText = `${position}/${duration}`
   }

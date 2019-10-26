@@ -22,6 +22,10 @@ class Controller {
       view.updatePlayPauseToggle(player)
     })
 
+    player.media.addEventListener('pause', () => {
+      view.updatePlayPauseToggle(player)
+    })
+
     player.media.addEventListener('timeupdate', () => {
       view.updateTimeInfo(player)
       view.updateProgressBar(player)
@@ -56,8 +60,6 @@ class Controller {
 
     view.elements.playPauseToggle.addEventListener('click', () => {
       player.toggle()
-
-      view.updatePlayPauseToggle(player)
     })
 
     view.elements.muteButton.addEventListener('click', () => {
@@ -87,7 +89,7 @@ class Controller {
       view.updateProgressBar(player)
     })
 
-    ipcRenderer.on('selected-file', (e, filePath) => {
+    ipcRenderer.on('selected-file', (event, filePath) => {
       if (filePath) {
         player.media.src = sanitizeFilePath(filePath)
         view.elements.appTitle.textContent = path.basename(filePath)

@@ -7,6 +7,14 @@ class Player {
     return this.media.paused
   }
 
+  get error() {
+    return this.media.error.code
+  }
+
+  get isReady() {
+    return this.media.readyState === 4
+  }
+
   play() {
     this.media.play()
   }

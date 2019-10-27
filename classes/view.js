@@ -24,6 +24,10 @@ class View {
     }
   }
 
+  enableControls() {
+    this.elements.controlsToEnable.forEach(control => control.disabled = false)
+  }
+
   updateProgressBar(player) {
     this.elements.progressBarInput.value = player.media.currentTime
 

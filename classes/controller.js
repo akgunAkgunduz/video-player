@@ -16,6 +16,7 @@ class Controller {
     player.media.addEventListener('loadedmetadata', () => {
       view.elements.progressBarInput.max = player.media.duration
       view.resizeVideo()
+      view.enableControls()
     })
 
     player.media.addEventListener('play', () => {

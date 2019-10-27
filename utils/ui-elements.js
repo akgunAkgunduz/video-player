@@ -18,5 +18,6 @@ module.exports = {
   speedSlider: document.getElementById('speed'),
   speedText: document.getElementById('speed-text'),
   loopButton: document.getElementById('loop-btn'),
-  fullscreenButton: document.getElementById('fullscreen-btn')
+  fullscreenButton: document.getElementById('fullscreen-btn'),
+  controlsToEnable: document.querySelectorAll('.control-to-enable')
 }

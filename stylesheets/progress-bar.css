@@ -17,25 +17,27 @@
   background-color: transparent;
 }
 
-#progress-bar-input:hover ~ #progress-bar-thumb {
-  transform: scale(9)
+#progress-bar-input:enabled:hover ~ #progress-bar-thumb {
+  visibility: visible;
+  transform: scale(9);
 }
 
-#progress-bar-input:hover ~ #progress-bar-background {
+#progress-bar-input:enabled:hover ~ #progress-bar-background {
   height: 6px;
 }
 
-#progress-bar-input:hover ~ #progress-bar-progress {
+#progress-bar-input:enabled:hover ~ #progress-bar-progress {
   height: 6px;
 }
 
-#progress-bar-input:hover ~ #progress-bar-info {
+#progress-bar-input:enabled:hover ~ #progress-bar-info {
   visibility: visible;
   opacity: 1;
 }
 
 #progress-bar-thumb {
   position: relative;
+  visibility: hidden;
   left: -1px;
   top: 0;
   width: 2px;

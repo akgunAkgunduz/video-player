@@ -6,6 +6,10 @@ class View {
     this.resizeVideo = this.resizeVideo.bind(this)
   }
 
+  updateAppTitle(newTitle) {
+    this.elements.appTitle.textContent = newTitle
+  }
+
   resizeVideo() {
     const videoContainerHeight = this.elements.videoContainer.offsetHeight
     const videoContainerWidth = this.elements.videoContainer.offsetWidth

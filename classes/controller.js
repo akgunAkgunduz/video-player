@@ -124,7 +124,7 @@ class Controller {
     ipcRenderer.on('selected-file', (event, filePath) => {
       if (filePath) {
         player.media.src = sanitizeFilePath(filePath)
-        view.elements.appTitle.textContent = path.basename(filePath)
+        view.updateAppTitle(path.basename(filePath))
       }
     })
   }

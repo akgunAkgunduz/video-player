@@ -97,6 +97,31 @@ class View {
   updateLoopButton() {
     this.elements.loopButton.classList.toggle('on')
   }
+
+  goFullscreen() {
+    this.elements.appTitleBar.classList.add('in-fullscreen')
+    this.elements.appMain.classList.add('in-fullscreen')
+    this.elements.videoContainer.classList.add('in-fullscreen')
+    this.elements.controlsContainer.classList.add('in-fullscreen')
+    this.elements.fullscreenButton.querySelector('i').innerText = 'fullscreen_exit'
+  }
+  
+  exitFullscreen() {
+    this.elements.appTitleBar.classList.remove('in-fullscreen')
+    this.elements.appMain.classList.remove('in-fullscreen')
+    this.elements.videoContainer.classList.remove('in-fullscreen')
+    this.elements.controlsContainer.classList.remove('in-fullscreen')
+    this.elements.controlsContainer.classList.remove('apparent')
+    this.elements.fullscreenButton.querySelector('i').innerText = 'fullscreen'
+  }
+
+  showFullscreenControls(event) {
+    if (event.clientY >= document.body.offsetHeight - this.elements.controlsContainer.offsetHeight) {
+      this.elements.controlsContainer.classList.add('apparent')
+    } else {
+      this.elements.controlsContainer.classList.remove('apparent')
+    }
+  }
 }
 
 module.exports = View

@@ -1,12 +1,14 @@
 const path = require('path')
 
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, remote } = require('electron')
 
 const Player = require('./player')
 const View = require('./view')
 
 const uiElements = require('../utils/ui-elements')
 const { sanitizeFilePath } = require('../utils/helpers')
+
+const win = remote.getCurrentWindow()
 
 const player = new Player(document.getElementById('video'))
 const view = new View(uiElements)
@@ -88,9 +90,25 @@ class Controller {
       view.updateLoopButton()
     })
 
+    view.elements.fullscreenButton.addEventListener('click', () => {
+      win.isFullScreen() ? win.setFullScreen(false) : win.setFullScreen(true)
+    })
+
     window.addEventListener('resize', () => {
       view.resizeVideo()
       view.updateProgressBar(player)
+    })
+
+    window.addEventListener('mousemove', (event) => {
+      if (win.isFullScreen()) view.showFullscreenControls(event)
+    })
+
+    win.on('enter-full-screen', () => {
+      view.goFullscreen()
+    })
+
+    win.on('leave-full-screen', () => {
+      view.exitFullscreen()
     })
 
     ipcRenderer.on('selected-file', (event, filePath) => {

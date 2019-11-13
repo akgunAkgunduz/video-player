@@ -3,6 +3,7 @@
   --color-dark-secondary: #555;
   --color-light-primary: #ddd;
   --color-light-secondary: #bbb;
+  --color-transparent: rgba(0, 0 ,0 , 0.33);
   --color-video-background: #000;
   --color-progress-bar: #f00;
 

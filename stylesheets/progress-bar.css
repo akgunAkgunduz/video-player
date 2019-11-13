@@ -23,6 +23,10 @@
   transform: scale(9);
 }
 
+#controls-container.in-fullscreen #progress-bar-input:enabled:hover ~ #progress-bar-thumb {
+  box-shadow: none;
+}
+
 #progress-bar-input:enabled:hover ~ #progress-bar-background {
   height: 6px;
 }
@@ -76,8 +80,12 @@
   grid-row-end: 2;
   grid-column-start: 1;
   grid-column-end: 2;
-  background-color: #ddd;
+  background-color: var(--color-light-primary);
   transition: height linear 0.1s;
+}
+
+#controls-container.in-fullscreen #progress-bar-background {
+  background-color: white;
 }
 
 #progress-bar-info {
@@ -95,4 +103,10 @@
   background-color: var(--color-dark-secondary);
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.15);
   transition: opacity ease-out 0.25s;
+}
+
+#controls-container.in-fullscreen #progress-bar-info {
+  color: white;
+  background-color: var(--color-transparent);
+  box-shadow: none;
 }

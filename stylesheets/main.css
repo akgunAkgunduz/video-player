@@ -9,10 +9,18 @@
   grid-template-rows: 1fr var(--height-controls);
 }
 
+#app-main.in-fullscreen {
+  display: block;
+}
+
 #video-container {
   width: 100vw;
   height: calc(100vh - var(--height-title-bar) - var(--height-controls));
   background-color: var(--color-video-background);
+}
+
+#video-container.in-fullscreen {
+  height: 100vh;
 }
 
 #video {

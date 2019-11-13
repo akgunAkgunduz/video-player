@@ -8,6 +8,10 @@
   transition: color .1s linear, background-color .1s linear;
 }
 
+#title-bar.in-fullscreen {
+  display: none;
+}
+
 #title-bar.blurred {
   color: gray ;
   background-color: var(--color-light-primary);

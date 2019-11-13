@@ -14,7 +14,7 @@ const player = new Player(document.getElementById('video'))
 const view = new View(uiElements)
 
 class Controller {
-  setUpEventListeners() {
+  setUpEventListenersForPlayer() {
     player.media.addEventListener('loadedmetadata', () => {
       view.elements.progressBarInput.max = player.media.duration
       view.resizeVideo()
@@ -49,7 +49,9 @@ class Controller {
     player.media.addEventListener('ratechange', () => {
       view.updateSpeed(player.media.playbackRate)
     })
+  }
 
+  setUpEventListenersForView() {
     view.elements.progressBarInput.addEventListener('input', (event) => {
       player.media.currentTime = event.target.value
 
@@ -93,7 +95,9 @@ class Controller {
     view.elements.fullscreenButton.addEventListener('click', () => {
       win.isFullScreen() ? win.setFullScreen(false) : win.setFullScreen(true)
     })
+  }
 
+  setUpEventListenersForWindow() {
     window.addEventListener('resize', () => {
       view.resizeVideo()
       view.updateProgressBar(player)
@@ -110,6 +114,12 @@ class Controller {
     win.on('leave-full-screen', () => {
       view.exitFullscreen()
     })
+  }
+
+  setUpEventListeners() {
+    this.setUpEventListenersForPlayer()
+    this.setUpEventListenersForView()
+    this.setUpEventListenersForWindow()
 
     ipcRenderer.on('selected-file', (event, filePath) => {
       if (filePath) {

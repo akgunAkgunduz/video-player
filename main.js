@@ -5,13 +5,18 @@ const supportedFileTypes = require('./utils/supported-file-types')
 let mainWindow
 
 function createWindow() {
-  let mainWindowState = windowStateKeeper()
+  let mainWindowState = windowStateKeeper({
+    defaultWidth: 640,
+    defaultHeight: 360,
+    maximize: false,
+    fullScreen: false
+  })
 
   mainWindow = new BrowserWindow({
-    width: 640,
-    height: 360,
     minWidth: 640,
     minHeight: 360,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
     x: mainWindowState.x,
     y: mainWindowState.y,
     backgroundColor: '#333',

@@ -32,7 +32,7 @@
         <div id="controls-container">
           <div id="controls-row-1">
             <div id="progress-bar">
-              <input type="range" id="progress-bar-input" class="control-to-enable" value="0" step="0.0000000001" disabled>
+              <input type="range" id="progress-bar-input" class="control-to-enable" value="0" step="0.0001" tabindex="-1" onclick="this.blur()" disabled>
               <div id="progress-bar-thumb"></div>
               <div id="progress-bar-progress"></div>
               <div id="progress-bar-background"></div>
@@ -41,20 +41,20 @@
           </div>
 
           <div id="controls-row-2">
-            <button id="open-file-btn" class="control btn" tabindex="-1">
+            <button id="open-file-btn" class="control btn" tabindex="-1" onclick="this.blur()">
               <i class="material-icons">eject</i>
             </button>
 
-            <button id="play-pause-toggle" class="control control-to-enable btn" tabindex="-1" disabled>
+            <button id="play-pause-toggle" class="control control-to-enable btn" tabindex="-1" onclick="this.blur()" disabled>
               <i class="material-icons">play_arrow</i>
             </button>
 
             <div id="volume-div">
-              <button id="mute-btn" class="control btn" tabindex="-1">
+              <button id="mute-btn" class="control btn" tabindex="-1" onclick="this.blur()">
                 <i class="material-icons">volume_up</i>
               </button>
 
-              <input type="range" id="volume" class="sldr" min="0" max="1" step="0.01" value="1" tabindex="-1">
+              <input type="range" id="volume" class="sldr" min="0" max="1" step="0.01" value="1" tabindex="-1" onclick="this.blur()">
 
               <div id="volume-text">100%</div>
             </div>
@@ -62,20 +62,20 @@
             <div id="time-info"></div>
 
             <div id="speed-div">
-              <button id="reset-speed-btn" class="control btn" tabindex="-1">
+              <button id="reset-speed-btn" class="control btn" tabindex="-1" onclick="this.blur()">
                 <i class="material-icons">directions_run</i>
               </button>
 
-              <input type="range" id="speed" class="sldr" min="0.50" max="2.50" step="0.05" value="1" tabindex="-1">
+              <input type="range" id="speed" class="sldr" min="0.50" max="2.50" step="0.05" value="1" tabindex="-1" onclick="this.blur()">
 
               <div id="speed-text">1.00x</div>
             </div>
 
-            <button id="loop-btn" class="control btn" tabindex="-1">
+            <button id="loop-btn" class="control btn" tabindex="-1" onclick="this.blur()">
               <i class="material-icons">loop</i>
             </button>
 
-            <button id="fullscreen-btn" class="control control-to-enable btn" tabindex="-1" disabled>
+            <button id="fullscreen-btn" class="control control-to-enable btn" tabindex="-1" onclick="this.blur()" disabled>
               <i class="material-icons">fullscreen</i>
             </button>
           </div>

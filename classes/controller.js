@@ -116,10 +116,39 @@ class Controller {
     })
   }
 
+  setUpEventListenersForKeyboard() {
+    document.addEventListener('keydown', (event) => {
+      if (event.code === 'ArrowLeft' && !view.elements.progressBarInput.disabled) {
+        player.media.currentTime -= 5
+      }
+      
+      if (event.code === 'ArrowRight' && !view.elements.progressBarInput.disabled) {
+        player.media.currentTime += 5
+      }
+
+      if (event.code === 'KeyM') {
+        view.elements.muteButton.click()
+      }
+
+      if (event.code === 'Space') {
+        view.elements.playPauseToggle.click()
+      }
+
+      if (event.code === 'KeyF') {
+        view.elements.fullscreenButton.click()
+      }
+
+      if (event.code === 'Escape' && win.isFullScreen()) {
+        view.elements.fullscreenButton.click()
+      }
+    })
+  }
+
   setUpEventListeners() {
     this.setUpEventListenersForPlayer()
     this.setUpEventListenersForView()
     this.setUpEventListenersForWindow()
+    this.setUpEventListenersForKeyboard()
 
     ipcRenderer.on('selected-file', (event, filePath) => {
       if (filePath) {

@@ -52,6 +52,14 @@ class Controller {
   }
 
   setUpEventListenersForView() {
+    view.elements.videoContainer.addEventListener('click', () => {
+      view.elements.playPauseToggle.click()
+    })
+    
+    view.elements.videoContainer.addEventListener('dblclick', () => {
+      view.elements.fullscreenButton.click()
+    })
+
     view.elements.progressBarInput.addEventListener('input', (event) => {
       player.media.currentTime = event.target.value
 

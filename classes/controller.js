@@ -6,7 +6,7 @@ const Player = require('./player')
 const View = require('./view')
 
 const uiElements = require('../utils/ui-elements')
-const { sanitizeFilePath } = require('../utils/helpers')
+const { sanitizeFilePath, formatSeconds } = require('../utils/helpers')
 
 const win = remote.getCurrentWindow()
 
@@ -128,14 +128,20 @@ class Controller {
     document.addEventListener('keydown', (event) => {
       if (event.code === 'Home' && !view.elements.progressBarInput.disabled) {
         player.media.currentTime = 0
+
+        view.showMessage(`${formatSeconds(player.media.currentTime)} / ${formatSeconds(player.media.duration)}`)
       }
 
       if (event.code === 'ArrowLeft' && !view.elements.progressBarInput.disabled) {
         player.media.currentTime -= 5
+
+        view.showMessage(`${formatSeconds(player.media.currentTime)} / ${formatSeconds(player.media.duration)}`)
       }
 
       if (event.code === 'ArrowRight' && !view.elements.progressBarInput.disabled) {
         player.media.currentTime += 5
+
+        view.showMessage(`${formatSeconds(player.media.currentTime)} / ${formatSeconds(player.media.duration)}`)
       }
 
       if (event.code === 'KeyO' && event.ctrlKey) {
@@ -144,38 +150,54 @@ class Controller {
 
       if (event.code === 'Space') {
         view.elements.playPauseToggle.click()
+
+        view.showMessage(player.isPaused ? 'Paused' : 'Playing')
       }
 
       if (event.code === 'KeyM') {
         view.elements.muteButton.click()
-      }
 
+        view.showMessage(`Volume: ${Math.floor(player.media.volume * 100)}%`)
+      }
+      
       if (event.code === 'ArrowUp' && !event.ctrlKey) {
         view.elements.volumeSlider.value = parseFloat(view.elements.volumeSlider.value) + 0.05
         view.elements.volumeSlider.dispatchEvent(new Event('input'))
+
+        view.showMessage(`Volume: ${Math.floor(player.media.volume * 100)}%`)
       }
 
       if (event.code === 'ArrowDown' && !event.ctrlKey) {
         view.elements.volumeSlider.value = parseFloat(view.elements.volumeSlider.value) - 0.05
         view.elements.volumeSlider.dispatchEvent(new Event('input'))
+
+        view.showMessage(`Volume: ${Math.floor(player.media.volume * 100)}%`)
       }
 
       if (event.code === 'KeyS') {
         view.elements.resetSpeedButton.click()
+
+        view.showMessage(`Speed: ${player.media.playbackRate.toFixed(2)}x`)
       }
 
       if (event.code === 'ArrowUp' && event.ctrlKey) {
         view.elements.speedSlider.value = parseFloat(view.elements.speedSlider.value) + 0.05
         view.elements.speedSlider.dispatchEvent(new Event('input'))
+
+        view.showMessage(`Speed: ${player.media.playbackRate.toFixed(2)}x`)
       }
 
       if (event.code === 'ArrowDown' && event.ctrlKey) {
         view.elements.speedSlider.value = parseFloat(view.elements.speedSlider.value) - 0.05
         view.elements.speedSlider.dispatchEvent(new Event('input'))
+
+        view.showMessage(`Speed: ${player.media.playbackRate.toFixed(2)}x`)
       }
 
       if (event.code === 'KeyL') {
         view.elements.loopButton.click()
+
+        view.showMessage(player.media.loop ? 'Loop: ON' : 'Loop: OFF')
       }
 
       if (event.code === 'KeyF') {

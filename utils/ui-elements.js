@@ -3,6 +3,9 @@ module.exports = {
   appTitle: document.getElementById('app-name').querySelector('.handle'),
   appMain: document.getElementById('app-main'),
 
+  messageContainer: document.getElementById('message-container'),
+  message: document.getElementById('message'),
+
   videoContainer: document.getElementById('video-container'),
   video: document.getElementById('video'),
 

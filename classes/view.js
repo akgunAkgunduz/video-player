@@ -1,4 +1,7 @@
+const { remote } = require('electron')
 const { formatSeconds } = require('../utils/helpers')
+
+const win = remote.getCurrentWindow()
 
 class View {
   constructor(uiElements) {
@@ -124,6 +127,15 @@ class View {
       this.elements.controlsContainer.classList.add('apparent')
     } else {
       this.elements.controlsContainer.classList.remove('apparent')
+    }
+  }
+
+  showMessage(message) {
+    if (win.isFullScreen()) {
+      clearTimeout(this.timer)
+      this.elements.message.innerText = message
+      this.elements.messageContainer.classList.remove('hidden')
+      this.timer = setTimeout(() => this.elements.messageContainer.classList.add('hidden'), 1000)
     }
   }
 }

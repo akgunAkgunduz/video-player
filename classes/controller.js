@@ -118,20 +118,56 @@ class Controller {
 
   setUpEventListenersForKeyboard() {
     document.addEventListener('keydown', (event) => {
+      if (event.code === 'Home' && !view.elements.progressBarInput.disabled) {
+        player.media.currentTime = 0
+      }
+
       if (event.code === 'ArrowLeft' && !view.elements.progressBarInput.disabled) {
         player.media.currentTime -= 5
       }
-      
+
       if (event.code === 'ArrowRight' && !view.elements.progressBarInput.disabled) {
         player.media.currentTime += 5
+      }
+
+      if (event.code === 'KeyO' && event.ctrlKey) {
+        view.elements.openFileButton.click()
+      }
+
+      if (event.code === 'Space') {
+        view.elements.playPauseToggle.click()
       }
 
       if (event.code === 'KeyM') {
         view.elements.muteButton.click()
       }
 
-      if (event.code === 'Space') {
-        view.elements.playPauseToggle.click()
+      if (event.code === 'ArrowUp' && !event.ctrlKey) {
+        view.elements.volumeSlider.value = parseFloat(view.elements.volumeSlider.value) + 0.05
+        view.elements.volumeSlider.dispatchEvent(new Event('input'))
+      }
+
+      if (event.code === 'ArrowDown' && !event.ctrlKey) {
+        view.elements.volumeSlider.value = parseFloat(view.elements.volumeSlider.value) - 0.05
+        view.elements.volumeSlider.dispatchEvent(new Event('input'))
+      }
+
+      if (event.code === 'KeyS') {
+        view.elements.resetSpeedButton.click()
+      }
+
+      if (event.code === 'ArrowUp' && event.ctrlKey) {
+        view.elements.speedSlider.value = parseFloat(view.elements.speedSlider.value) + 0.05
+        view.elements.speedSlider.dispatchEvent(new Event('input'))
+      }
+
+      if (event.code === 'ArrowDown' && event.ctrlKey) {
+        view.elements.speedSlider.value = parseFloat(view.elements.speedSlider.value) - 0.05
+        view.elements.speedSlider.dispatchEvent(new Event('input'))
+      }
+
+      if (event.code === 'KeyL') {
+        view.elements.loopButton.click()
       }
 
       if (event.code === 'KeyF') {

@@ -7,6 +7,8 @@ class View {
   constructor(uiElements) {
     this.elements = uiElements
     this.resizeVideo = this.resizeVideo.bind(this)
+    this.volume = 1
+    this.timer = null
   }
 
   updateAppTitle(newTitle) {

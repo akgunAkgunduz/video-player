@@ -130,10 +130,30 @@ class View {
     }
   }
 
-  showMessage(message) {
+  showMessage(messageType, player) {
     if (win.isFullScreen()) {
       clearTimeout(this.timer)
-      this.elements.message.innerText = message
+
+      switch (messageType) {
+        case 'status':
+          this.elements.message.innerText = player.isPaused ? 'Paused' : 'Playing'
+          break;
+        case 'position':
+          this.elements.message.innerText = `${formatSeconds(player.media.currentTime)} / ${formatSeconds(player.media.duration)}`
+          break;
+        case 'volume':
+          this.elements.message.innerText = `Volume: ${Math.floor(player.media.volume * 100)}%`
+          break;
+        case 'speed':
+          this.elements.message.innerText = `Speed: ${player.media.playbackRate.toFixed(2)}x`
+          break;
+        case 'loop':
+          this.elements.message.innerText = player.media.loop ? 'Loop: ON' : 'Loop: OFF'
+          break;
+        default:
+          this.elements.message.innerText = ''
+      }
+
       this.elements.messageContainer.classList.remove('hidden')
       this.timer = setTimeout(() => this.elements.messageContainer.classList.add('hidden'), 1000)
     }

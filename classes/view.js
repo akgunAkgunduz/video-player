@@ -113,6 +113,7 @@ class View {
     this.elements.videoContainer.classList.add('in-fullscreen')
     this.elements.controlsContainer.classList.add('in-fullscreen')
     this.elements.fullscreenButton.querySelector('i').innerText = 'fullscreen_exit'
+    this.elements.messageContainer.style.display = 'block'
   }
   
   exitFullscreen() {
@@ -122,6 +123,8 @@ class View {
     this.elements.controlsContainer.classList.remove('in-fullscreen')
     this.elements.controlsContainer.classList.remove('apparent')
     this.elements.fullscreenButton.querySelector('i').innerText = 'fullscreen'
+    this.elements.messageContainer.classList.add('hidden')
+    this.elements.messageContainer.style.display = 'none'
   }
 
   showFullscreenControls(event) {

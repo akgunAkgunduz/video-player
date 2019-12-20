@@ -26,6 +26,10 @@
   transition: opacity 0.25s;
 }
 
+#message-container.hidden {
+  opacity: 0;
+}
+
 #message {
   display: inline-block;
   background-color: var(--color-transparent);

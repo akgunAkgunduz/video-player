@@ -86,6 +86,16 @@ class Controller {
       player.media.volume = event.target.value
     })
 
+    view.elements.volumeSlider.addEventListener('wheel', (event) => {
+      if (event.deltaY === -100) {
+        event.target.value = parseFloat(event.target.value) + 0.05
+      } else {
+        event.target.value = parseFloat(event.target.value) - 0.05
+      }
+
+      event.target.dispatchEvent(new Event('input'))
+    })
+
     view.elements.speedSlider.addEventListener('input', (event) => {
       player.media.playbackRate = event.target.value
     })

@@ -60,6 +60,18 @@ class Controller {
       view.elements.fullscreenButton.click()
     })
 
+    view.elements.videoContainer.addEventListener('wheel', (event) => {
+      if (event.deltaY === -100) {
+        view.elements.volumeSlider.value = parseFloat(view.elements.volumeSlider.value) + 0.05
+      } else {
+        view.elements.volumeSlider.value = parseFloat(view.elements.volumeSlider.value) - 0.05
+      }
+
+      view.elements.volumeSlider.dispatchEvent(new Event('input'))
+
+      view.showMessage('volume', player)
+    })
+
     view.elements.progressBarInput.addEventListener('input', (event) => {
       player.media.currentTime = event.target.value
 

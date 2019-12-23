@@ -46,7 +46,7 @@ class Controller {
     })
 
     player.media.addEventListener('ratechange', () => {
-      view.updateSpeed(player.media.playbackRate)
+      view.updateSpeedElements(player.media.playbackRate)
     })
   }
 

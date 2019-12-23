@@ -78,22 +78,11 @@ class View {
   }
 
   updatePlayPauseToggle(player) {
-    if (player.isPaused) {
-      this.elements.playPauseToggle.querySelector('i').innerText = 'play_arrow'
-    } else {
-      this.elements.playPauseToggle.querySelector('i').innerText = 'pause'
-    }
+    this.elements.playPauseToggle.querySelector('i').innerText = player.isPaused ? 'play_arrow' : 'pause'
   }
 
-  updateMuteButton(volume) {
-    if (volume > 0) {
-      this.elements.muteButton.querySelector('i').innerText = 'volume_up'
-    } else {
-      this.elements.muteButton.querySelector('i').innerText = 'volume_off'
-    }
-  }
-
-  updateVolume(volume) {
+  updateVolumeElements(volume) {
+    this.elements.muteButton.querySelector('i').innerText = volume > 0 ? 'volume_up' : 'volume_off'
     this.elements.volumeSlider.value = volume
     this.elements.volumeText.textContent = Math.floor(volume * 100) + '%'
   }

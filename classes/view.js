@@ -81,6 +81,10 @@ class View {
     this.elements.playPauseToggle.querySelector('i').innerText = player.isPaused ? 'play_arrow' : 'pause'
   }
 
+  updateVolume(newVolume) {
+    this.volume = newVolume
+  }
+
   updateVolumeElements(volume) {
     this.elements.muteButton.querySelector('i').innerText = volume > 0 ? 'volume_up' : 'volume_off'
     this.elements.volumeSlider.value = volume

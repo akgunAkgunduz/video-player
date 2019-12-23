@@ -90,11 +90,22 @@ class Controller {
     })
 
     view.elements.muteButton.addEventListener('click', () => {
-      player.media.volume = !player.media.volume
+      if (player.media.volume === 0) {
+        if (view.volume === 0) {
+          view.updateVolume(0.5)
+        }
+        player.media.volume = view.volume
+      } else {
+        player.media.volume = 0
+      }
+
+      view.updateVolumeElements(player.media.volume)
     })
 
     view.elements.volumeSlider.addEventListener('input', (event) => {
       player.media.volume = event.target.value
+
+      view.updateVolume(player.media.volume)
     })
 
     view.elements.volumeSlider.addEventListener('wheel', (event) => {

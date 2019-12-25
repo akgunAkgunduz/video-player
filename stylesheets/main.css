@@ -13,10 +13,6 @@
   display: block;
 }
 
-#message-container.hidden {
-  opacity: 0;
-}
-
 #message-container {
   position: fixed;
   top: 64px;
@@ -49,4 +45,25 @@
 
 #video {
   display: block;
+}
+
+#drag-and-drop-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 64px;
+  left: 32px;
+  width: calc(100vw - 64px);
+  height: calc(100vh - (var(--height-title-bar) + var(--height-controls)) - 64px);
+  text-align: center;
+  font-size: x-large;
+  font-weight: bolder;
+  color: yellowgreen;
+  border: dashed 3px yellowgreen;
+  border-radius: 6px;
+}
+
+#drag-and-drop-info-icon i {
+  font-size: 64px;
 }

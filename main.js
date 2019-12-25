@@ -66,3 +66,27 @@ ipcMain.on('open-file-dialog', (e) => {
     }
   })
 })
+
+ipcMain.on('show-file-type-not-supported-message-box', (event) => {
+  const options = {
+    type: 'error',
+    buttons: ['OK'],
+    defaultId: 0,
+    title: 'Error',
+    message: 'File type not supported',
+  }
+
+  dialog.showMessageBox(mainWindow, options)
+})
+
+ipcMain.on('show-not-a-file-message-box', (event) => {
+  const options = {
+    type: 'error',
+    buttons: ['OK'],
+    defaultId: 0,
+    title: 'Error',
+    message: 'The item you dropped is not a file',
+  }
+
+  dialog.showMessageBox(mainWindow, options)
+})

@@ -6,7 +6,7 @@ const Player = require('./player')
 const View = require('./view')
 
 const uiElements = require('../utils/ui-elements')
-const { sanitizeFilePath, formatSeconds } = require('../utils/helpers')
+const { sanitizeFilePath, isFileTypeSupported } = require('../utils/helpers')
 
 const win = remote.getCurrentWindow()
 
@@ -18,6 +18,7 @@ class Controller {
     player.media.addEventListener('loadedmetadata', () => {
       view.elements.progressBarInput.max = player.media.duration
       view.resizeVideo()
+      view.removeDragAndDropInfo()
       view.enableControls()
     })
 
@@ -51,6 +52,31 @@ class Controller {
   }
 
   setUpEventListenersForView() {
+    view.elements.videoContainer.addEventListener('dragover', (event) => event.preventDefault(), false)
+
+    view.elements.videoContainer.addEventListener('dragleave', (event) => event.preventDefault(), false)
+
+    view.elements.videoContainer.addEventListener('dragend', (event) => event.preventDefault(), false)
+
+    view.elements.videoContainer.addEventListener('drop', (event) => {
+      event.preventDefault()
+      const firstItem = event.dataTransfer.items[0].webkitGetAsEntry()
+
+      if (firstItem.isFile) {
+        const filePath = event.dataTransfer.files[0].path
+
+        if (isFileTypeSupported(filePath)) {
+          player.media.src = filePath
+
+          view.updateAppTitle(path.basename(filePath))
+        } else {
+          ipcRenderer.send('show-file-type-not-supported-message-box')
+        }
+      } else {
+        ipcRenderer.send('show-not-a-file-message-box')
+      }
+    })
+
     view.elements.videoContainer.addEventListener('click', () => {
       view.elements.playPauseToggle.click()
     })

@@ -33,6 +33,10 @@ class View {
     }
   }
 
+  removeDragAndDropInfo() {
+    if (document.body.contains(this.elements.dragAndDropInfo)) this.elements.dragAndDropInfo.outerHTML = ''
+  }
+
   enableControls() {
     this.elements.controlsToEnable.forEach(control => control.disabled = false)
   }

@@ -9,6 +9,8 @@ module.exports = {
   videoContainer: document.getElementById('video-container'),
   video: document.getElementById('video'),
 
+  dragAndDropInfo: document.getElementById('drag-and-drop-info'),
+
   controlsContainer: document.getElementById('controls-container'),
 
   progressBar: document.getElementById('progress-bar'),

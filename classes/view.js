@@ -15,6 +15,15 @@ class View {
     this.elements.appTitle.textContent = newTitle
   }
 
+  resetScene() {
+    this.elements.progressBarInput.value = 0
+    this.elements.progressBarProgress.style.width = 0
+    this.elements.progressBarThumb.style.left = 0
+    this.elements.playPauseToggle.querySelector('i').innerText = 'play_arrow'
+    this.elements.timeInfo.innerText = '00:00 / 00:00'
+    this.disableControls()
+  }
+
   resizeVideo() {
     const videoContainerHeight = this.elements.videoContainer.offsetHeight
     const videoContainerWidth = this.elements.videoContainer.offsetWidth
@@ -39,6 +48,10 @@ class View {
 
   enableControls() {
     this.elements.controlsToEnable.forEach(control => control.disabled = false)
+  }
+
+  disableControls() {
+    this.elements.controlsToEnable.forEach(control => control.disabled = true)
   }
 
   updateProgressBar(player) {

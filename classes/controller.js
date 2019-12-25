@@ -15,6 +15,11 @@ const view = new View(uiElements)
 
 class Controller {
   setUpEventListenersForPlayer() {
+    player.media.addEventListener('error', () => {
+      ipcRenderer.send('show-player-error-message-box', { code: player.media.error.code, message: player.media.error.message })
+      view.resetScene()
+    })
+
     player.media.addEventListener('loadedmetadata', () => {
       view.elements.progressBarInput.max = player.media.duration
       view.resizeVideo()

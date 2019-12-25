@@ -67,6 +67,33 @@ ipcMain.on('open-file-dialog', (e) => {
   })
 })
 
+ipcMain.on('show-player-error-message-box', (event, playerError) => {
+  let errorType
+  const errorDetail = playerError.message
+
+  switch (playerError.code) {
+    case 3:
+      errorType = 'Decoding error.'
+      break
+    case 4:
+      errorType = 'File/Media type not supported.'
+      break
+    default:
+      errorType = 'An unexpected error ocurred.'
+  }
+
+  const options = {
+    type: 'error',
+    buttons: ['OK'],
+    defaultId: 0,
+    title: 'Error',
+    message: errorType,
+    detail: errorDetail
+  }
+
+  dialog.showMessageBox(mainWindow, options)
+})
+
 ipcMain.on('show-file-type-not-supported-message-box', (event) => {
   const options = {
     type: 'error',

@@ -4,12 +4,14 @@
   "description": "A video player for Windows",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-win": "electron-packager . video-player --overwrite --asar --platform=win32 --arch=ia32 --icon=images/player.ico --prune --out=build"
   },
   "author": "Akgün Akgündüz",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^6.0.10"
+    "electron": "^6.0.10",
+    "electron-packager": "^14.1.1"
   },
   "dependencies": {
     "electron-window-state": "^5.0.3"

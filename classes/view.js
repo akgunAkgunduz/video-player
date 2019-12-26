@@ -16,11 +16,13 @@ class View {
   }
 
   resetScene() {
+    this.updateAppTitle('Video Player')
+    this.elements.dragAndDropInfo.style.display = 'flex'
     this.elements.progressBarInput.value = 0
     this.elements.progressBarProgress.style.width = 0
     this.elements.progressBarThumb.style.left = 0
     this.elements.playPauseToggle.querySelector('i').innerText = 'play_arrow'
-    this.elements.timeInfo.innerText = '00:00 / 00:00'
+    this.elements.timeInfo.innerText = ''
     this.disableControls()
   }
 
@@ -43,7 +45,8 @@ class View {
   }
 
   removeDragAndDropInfo() {
-    if (document.body.contains(this.elements.dragAndDropInfo)) this.elements.dragAndDropInfo.outerHTML = ''
+    // if (document.body.contains(this.elements.dragAndDropInfo)) this.elements.dragAndDropInfo.outerHTML = ''
+    this.elements.dragAndDropInfo.style.display = 'none'
   }
 
   enableControls() {

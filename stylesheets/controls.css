@@ -111,15 +111,15 @@
   color: white;
 }
 
-#loop-btn {
+#repeat-toggle {
   transition: text-shadow 0.25s;
 }
 
-#loop-btn.on {
+#repeat-toggle.on {
   color: yellow;
   text-shadow: 0 0 1px var(--color-dark-primary), 0 0 4px yellow;
 }
 
-#controls-container.in-fullscreen #loop-btn.on {
+#controls-container.in-fullscreen #repeat-toggle.on {
   color: yellow;
 }

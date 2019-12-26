@@ -116,8 +116,8 @@ class View {
     this.elements.speedText.textContent = speed.toFixed(2) + 'x'
   }
 
-  updateLoopButton() {
-    this.elements.loopButton.classList.toggle('on')
+  updateRepeatToggle() {
+    this.elements.repeatToggle.classList.toggle('on')
   }
 
   goFullscreen() {
@@ -165,8 +165,8 @@ class View {
         case 'speed':
           this.elements.message.innerText = `Speed: ${player.media.playbackRate.toFixed(2)}x`
           break;
-        case 'loop':
-          this.elements.message.innerText = player.media.loop ? 'Loop: ON' : 'Loop: OFF'
+        case 'repeat':
+          this.elements.message.innerText = player.media.loop ? 'Repeat: On' : 'Repeat: Off'
           break;
         default:
           this.elements.message.innerText = ''

@@ -157,10 +157,10 @@ class Controller {
       player.media.playbackRate = 1
     })
 
-    view.elements.loopButton.addEventListener('click', () => {
+    view.elements.repeatToggle.addEventListener('click', () => {
       player.media.loop = !player.media.loop
 
-      view.updateLoopButton()
+      view.updateRepeatToggle()
     })
 
     view.elements.fullscreenButton.addEventListener('click', () => {
@@ -258,9 +258,9 @@ class Controller {
       }
 
       if (event.code === 'KeyL') {
-        view.elements.loopButton.click()
+        view.elements.repeatToggle.click()
 
-        view.showMessage('loop', player)
+        view.showMessage('repeat', player)
       }
 
       if (event.code === 'KeyF') {

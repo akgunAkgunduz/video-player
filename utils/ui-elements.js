@@ -29,7 +29,7 @@ module.exports = {
   resetSpeedButton: document.getElementById('reset-speed-btn'),
   speedSlider: document.getElementById('speed'),
   speedText: document.getElementById('speed-text'),
-  loopButton: document.getElementById('loop-btn'),
+  repeatToggle: document.getElementById('repeat-toggle'),
   fullscreenButton: document.getElementById('fullscreen-btn'),
 
   controlsToEnable: document.querySelectorAll('.control-to-enable')

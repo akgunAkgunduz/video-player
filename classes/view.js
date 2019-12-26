@@ -99,6 +99,7 @@ class View {
 
   updatePlayPauseToggle(player) {
     this.elements.playPauseToggle.querySelector('i').innerText = player.isPaused ? 'play_arrow' : 'pause'
+    this.elements.playPauseToggle.title = player.isPaused ? 'Play' : 'Pause'
   }
 
   updateVolume(newVolume) {
@@ -107,6 +108,7 @@ class View {
 
   updateVolumeElements(volume) {
     this.elements.muteButton.querySelector('i').innerText = volume > 0 ? 'volume_up' : 'volume_off'
+    this.elements.muteButton.title = volume > 0 ? 'Mute' : 'Unmute'
     this.elements.volumeSlider.value = volume
     this.elements.volumeText.textContent = Math.floor(volume * 100) + '%'
   }
@@ -116,8 +118,9 @@ class View {
     this.elements.speedText.textContent = speed.toFixed(2) + 'x'
   }
 
-  updateRepeatToggle() {
+  updateRepeatToggle(repeat) {
     this.elements.repeatToggle.classList.toggle('on')
+    this.elements.repeatToggle.title = repeat ? 'Don\'t repeat' : 'Repeat'
   }
 
   goFullscreen() {
@@ -126,6 +129,7 @@ class View {
     this.elements.videoContainer.classList.add('in-fullscreen')
     this.elements.controlsContainer.classList.add('in-fullscreen')
     this.elements.fullscreenButton.querySelector('i').innerText = 'fullscreen_exit'
+    this.elements.fullscreenButton.title = 'Exit fullscreen'
     this.elements.messageContainer.style.display = 'block'
   }
   
@@ -136,6 +140,7 @@ class View {
     this.elements.controlsContainer.classList.remove('in-fullscreen')
     this.elements.controlsContainer.classList.remove('apparent')
     this.elements.fullscreenButton.querySelector('i').innerText = 'fullscreen'
+    this.elements.fullscreenButton.title = 'Enter fullscreen'
     this.elements.messageContainer.classList.add('hidden')
     this.elements.messageContainer.style.display = 'none'
   }

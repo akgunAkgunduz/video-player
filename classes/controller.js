@@ -160,7 +160,7 @@ class Controller {
     view.elements.repeatToggle.addEventListener('click', () => {
       player.media.loop = !player.media.loop
 
-      view.updateRepeatToggle()
+      view.updateRepeatToggle(player.media.loop)
     })
 
     view.elements.fullscreenButton.addEventListener('click', () => {

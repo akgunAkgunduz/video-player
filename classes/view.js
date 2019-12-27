@@ -13,6 +13,7 @@ class View {
 
   updateAppTitle(newTitle) {
     this.elements.appTitle.textContent = newTitle
+    document.title = newTitle
   }
 
   resetScene() {
@@ -45,7 +46,6 @@ class View {
   }
 
   removeDragAndDropInfo() {
-    // if (document.body.contains(this.elements.dragAndDropInfo)) this.elements.dragAndDropInfo.outerHTML = ''
     this.elements.dragAndDropInfo.style.display = 'none'
   }
 

@@ -1,15 +1,11 @@
 const path = require('path')
-
 const { ipcRenderer, remote } = require('electron')
-
 const Player = require('./player')
 const View = require('./view')
-
 const uiElements = require('../utils/ui-elements')
 const { sanitizeFilePath, isFileTypeSupported } = require('../utils/helpers')
 
 const win = remote.getCurrentWindow()
-
 const player = new Player(document.getElementById('video'))
 const view = new View(uiElements)
 
@@ -71,7 +67,7 @@ class Controller {
         const filePath = event.dataTransfer.files[0].path
 
         if (isFileTypeSupported(filePath)) {
-          player.media.src = filePath
+          player.media.src = sanitizeFilePath(filePath)
 
           view.updateAppTitle(path.basename(filePath))
         } else {

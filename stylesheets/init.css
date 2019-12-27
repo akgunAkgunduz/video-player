@@ -35,3 +35,8 @@ button {
   outline: none;
   cursor: pointer;
 }
+
+button:disabled {
+  color: gray;
+  cursor: default;
+}

@@ -61,20 +61,23 @@ class Controller {
 
     view.elements.videoContainer.addEventListener('drop', (event) => {
       event.preventDefault()
-      const firstItem = event.dataTransfer.items[0].webkitGetAsEntry()
 
-      if (firstItem.isFile) {
-        const filePath = event.dataTransfer.files[0].path
-
-        if (isFileTypeSupported(filePath)) {
-          player.media.src = sanitizeFilePath(filePath)
-
-          view.updateAppTitle(path.basename(filePath))
+      if (!win.isFullScreen()) {
+        const firstItem = event.dataTransfer.items[0].webkitGetAsEntry()
+  
+        if (firstItem.isFile) {
+          const filePath = event.dataTransfer.files[0].path
+  
+          if (isFileTypeSupported(filePath)) {
+            player.media.src = sanitizeFilePath(filePath)
+  
+            view.updateAppTitle(path.basename(filePath))
+          } else {
+            ipcRenderer.send('show-file-type-not-supported-message-box')
+          }
         } else {
-          ipcRenderer.send('show-file-type-not-supported-message-box')
+          ipcRenderer.send('show-not-a-file-message-box')
         }
-      } else {
-        ipcRenderer.send('show-not-a-file-message-box')
       }
     })
 

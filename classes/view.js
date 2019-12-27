@@ -125,24 +125,34 @@ class View {
 
   goFullscreen() {
     this.elements.appTitleBar.classList.add('in-fullscreen')
+
     this.elements.appMain.classList.add('in-fullscreen')
+
     this.elements.videoContainer.classList.add('in-fullscreen')
+    this.elements.messageContainer.style.display = 'block'
     this.elements.controlsContainer.classList.add('in-fullscreen')
+
+    this.elements.openFileButton.disabled = true
+    this.elements.openFileButton.style.visibility = 'hidden'
     this.elements.fullscreenButton.querySelector('i').innerText = 'fullscreen_exit'
     this.elements.fullscreenButton.title = 'Exit fullscreen'
-    this.elements.messageContainer.style.display = 'block'
   }
-  
+
   exitFullscreen() {
     this.elements.appTitleBar.classList.remove('in-fullscreen')
+
     this.elements.appMain.classList.remove('in-fullscreen')
+
     this.elements.videoContainer.classList.remove('in-fullscreen')
-    this.elements.controlsContainer.classList.remove('in-fullscreen')
-    this.elements.controlsContainer.classList.remove('apparent')
-    this.elements.fullscreenButton.querySelector('i').innerText = 'fullscreen'
-    this.elements.fullscreenButton.title = 'Enter fullscreen'
     this.elements.messageContainer.classList.add('hidden')
     this.elements.messageContainer.style.display = 'none'
+    this.elements.controlsContainer.classList.remove('in-fullscreen')
+    this.elements.controlsContainer.classList.remove('apparent')
+
+    this.elements.openFileButton.disabled = false
+    this.elements.openFileButton.style.visibility = 'visible'
+    this.elements.fullscreenButton.querySelector('i').innerText = 'fullscreen'
+    this.elements.fullscreenButton.title = 'Enter fullscreen'
   }
 
   showFullscreenControls(event) {

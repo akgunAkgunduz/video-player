@@ -149,6 +149,16 @@ class Controller {
       player.media.playbackRate = event.target.value
     })
 
+    view.elements.speedSlider.addEventListener('wheel', (event) => {
+      if (event.deltaY === -100) {
+        event.target.value = parseFloat(event.target.value) + 0.05
+      } else {
+        event.target.value = parseFloat(event.target.value) - 0.05
+      }
+
+      event.target.dispatchEvent(new Event('input'))
+    })
+
     view.elements.resetSpeedButton.addEventListener('click', () => {
       player.media.playbackRate = 1
     })

@@ -253,7 +253,7 @@ class Controller {
         view.showMessage('speed', player)
       }
 
-      if (event.code === 'KeyL') {
+      if (event.code === 'KeyR') {
         view.elements.repeatToggle.click()
 
         view.showMessage('repeat', player)

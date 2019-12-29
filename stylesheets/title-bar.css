@@ -1,6 +1,6 @@
 #title-bar {
   display: grid;
-  grid-template-columns: 32px 1fr 46px 46px 46px;
+  grid-template-columns: 32px 1fr 16px 32px 16px 46px 46px 46px;
   width: 100vw;
   height: var(--height-title-bar);
   background-color: var(--color-dark-primary);
@@ -33,7 +33,7 @@
 #app-name .handle {
   position: relative;
   top: 2px;
-  width: calc(100vw - 170px);
+  width: calc(100vw - 234px);
   height: 30px;
   font-size: 12px;
   line-height: 26px;
@@ -44,6 +44,23 @@
 
 .handle {
   -webkit-app-region: drag;
+}
+
+#keyboard-shortcuts-button {
+  text-align: center;
+  cursor: pointer;
+}
+
+#keyboard-shortcuts-button:hover i {
+  color: white;
+}
+
+#keyboard-shortcuts-button i {
+  line-height: var(--height-title-bar);
+}
+
+#title-bar.blurred #keyboard-shortcuts-button:hover i {
+  color: var(--color-light-secondary);
 }
 
 .win-btn {

@@ -1,0 +1,66 @@
+@import '../../stylesheets/variables.css';
+@import '../../stylesheets/init.css';
+
+#title-bar {
+  display: grid;
+  height: 32px;
+  grid-template-columns: 32px 1fr 46px;
+  -webkit-app-region: drag;
+}
+
+#app-icon img {
+  position: relative;
+  height: 16px;
+  top: 8px;
+  left: 8px;
+}
+
+#window-title {
+  font-size: 12px;
+  line-height: 32px;
+}
+
+#close {
+  font-family: Segoe MDL2 Assets;
+  font-size: 10px;
+  line-height: 32px;
+  text-align: center;
+  transition: background-color .1s linear;
+  -webkit-app-region: no-drag;
+}
+
+#close:hover {
+  background-color: red;
+}
+
+#list {
+  list-style: none;
+}
+
+.row:nth-child(odd) {
+  background-color: var(--color-dark-secondary);
+  color: var(--color-light-secondary);
+}
+
+.row:nth-child(even) {
+  background-color: var(--color-light-secondary);
+  color: var(--color-dark-secondary);
+}
+
+.shortcut, .function {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+}
+
+.shortcut {
+  text-align: right;
+  width: 33%;
+  padding-right: 8px;
+}
+
+.function {
+  font-weight: bold;
+  width: 67%;
+  padding-left: 8px;
+}

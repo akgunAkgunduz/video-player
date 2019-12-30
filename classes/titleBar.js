@@ -1,5 +1,9 @@
+const path = require('path')
 const { remote } = require('electron')
+
+const { BrowserWindow } = remote
 const win = remote.getCurrentWindow()
+let keyboardShortcutsWindow
 
 class TitleBar {
   constructor(elements) {
@@ -25,6 +29,35 @@ class TitleBar {
 
     win.on('blur', () => {
       this.elements.bar.classList.add('blurred')
+    })
+
+    this.elements.keyboardShortcutsButton.addEventListener('click', () => {
+      const keyboardShortcutsWindowPath = path.join('file://', __dirname, '../secondary_windows/keyboard_shortcuts/index.html')
+
+      keyboardShortcutsWindow = new BrowserWindow({
+        width: 360,
+        height: 664,
+        parent: win,
+        modal: true,
+        frame: false,
+        resizable: false,
+        maximizable: false,
+        backgroundColor: '#333',
+        show: false,
+        webPreferences: {
+          nodeIntegration: true
+        }
+      })
+
+      keyboardShortcutsWindow.loadURL(keyboardShortcutsWindowPath)
+
+      // keyboardShortcutsWindow.webContents.openDevTools({ mode: 'detach' })
+
+      keyboardShortcutsWindow.once('ready-to-show', () => {
+        keyboardShortcutsWindow.show()
+      })
+
+      keyboardShortcutsWindow.on('close', () => { keyboardShortcutsWindow = null })
     })
 
     this.elements.minimize.addEventListener('click', () => {

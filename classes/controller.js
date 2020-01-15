@@ -32,11 +32,8 @@ class Controller {
     })
 
     player.media.addEventListener('timeupdate', () => {
-      //todo: another way of fixing this?
-      if (player.isReady) {
-        view.updateTimeInfo(player)
-        view.updateProgressBar(player)
-      }
+      view.updateProgressBar(player)
+      view.updateTimeInfo(player)
     })
 
     player.media.addEventListener('ended', () => {

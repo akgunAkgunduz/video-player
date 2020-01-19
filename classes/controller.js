@@ -269,6 +269,10 @@ class Controller {
         view.showMessage('repeat', player)
       }
 
+      if (event.code === 'F11' && view.elements.fullscreenButton.disabled) {
+        event.preventDefault()
+      }
+
       if (event.code === 'KeyF') {
         view.elements.fullscreenButton.click()
       }

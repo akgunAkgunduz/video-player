@@ -201,14 +201,26 @@ class Controller {
         view.showMessage('position', player)
       }
 
-      if (event.code === 'ArrowLeft' && !view.elements.progressBarInput.disabled) {
+      if (event.code === 'ArrowLeft' && !event.ctrlKey && !view.elements.progressBarInput.disabled) {
         player.media.currentTime -= 5
 
         view.showMessage('position', player)
       }
 
-      if (event.code === 'ArrowRight' && !view.elements.progressBarInput.disabled) {
+      if (event.code === 'ArrowRight' && !event.ctrlKey && !view.elements.progressBarInput.disabled) {
         player.media.currentTime += 5
+
+        view.showMessage('position', player)
+      }
+
+      if (event.code === 'ArrowLeft' && event.ctrlKey && !view.elements.progressBarInput.disabled) {
+        player.media.currentTime -= 15
+
+        view.showMessage('position', player)
+      }
+
+      if (event.code === 'ArrowRight' && event.ctrlKey && !view.elements.progressBarInput.disabled) {
+        player.media.currentTime += 15
 
         view.showMessage('position', player)
       }

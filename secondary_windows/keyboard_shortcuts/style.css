@@ -34,7 +34,18 @@
 }
 
 #list {
-  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#column1 .row {
+  border-right: var(--color-dark-primary) solid 1px;
+  border-left: var(--color-dark-primary) solid 8px;
+}
+
+#column2 .row {
+  border-left: var(--color-dark-primary) solid 1px;
+  border-right: var(--color-dark-primary) solid 8px;
 }
 
 .row:nth-child(odd) {

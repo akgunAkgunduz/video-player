@@ -35,8 +35,8 @@ class TitleBar {
       const keyboardShortcutsWindowPath = path.join('file://', __dirname, '../secondary_windows/keyboard_shortcuts/index.html')
 
       keyboardShortcutsWindow = new BrowserWindow({
-        width: 360,
-        height: 664,
+        width: 720,
+        height: 384,
         parent: win,
         modal: true,
         frame: false,

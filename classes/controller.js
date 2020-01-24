@@ -7,7 +7,7 @@ const { sanitizeFilePath, isFileTypeSupported } = require('../utils/helpers')
 
 const win = remote.getCurrentWindow()
 const player = new Player(document.getElementById('video'))
-const view = new View(uiElements)
+const view = new View(uiElements, player)
 
 class Controller {
   setUpEventListenersForPlayer() {
@@ -24,20 +24,20 @@ class Controller {
     })
 
     player.media.addEventListener('play', () => {
-      view.updatePlayPauseToggle(player)
+      view.updatePlayPauseToggle()
     })
 
     player.media.addEventListener('pause', () => {
-      view.updatePlayPauseToggle(player)
+      view.updatePlayPauseToggle()
     })
 
     player.media.addEventListener('timeupdate', () => {
-      view.updateProgressBar(player)
-      view.updateTimeInfo(player)
+      view.updateProgressBar()
+      view.updateTimeInfo()
     })
 
     player.media.addEventListener('ended', () => {
-      view.updatePlayPauseToggle(player)
+      view.updatePlayPauseToggle()
     })
 
     player.media.addEventListener('volumechange', () => {
@@ -95,17 +95,17 @@ class Controller {
 
       view.elements.volumeSlider.dispatchEvent(new Event('input'))
 
-      view.showMessage('volume', player)
+      view.showMessage('volume')
     })
 
     view.elements.progressBarInput.addEventListener('input', (event) => {
       player.media.currentTime = event.target.value
 
-      view.updateProgressBar(player)
+      view.updateProgressBar()
     })
 
     view.elements.progressBarInput.addEventListener('mousemove', (event) => {
-      view.showProgressBarInfo(player, event)
+      view.showProgressBarInfo(event)
     })
 
     view.elements.openFileButton.addEventListener('click', () => {
@@ -177,7 +177,7 @@ class Controller {
   setUpEventListenersForWindow() {
     window.addEventListener('resize', () => {
       view.resizeVideo()
-      view.updateProgressBar(player)
+      view.updateProgressBar()
     })
 
     window.addEventListener('mousemove', (event) => {
@@ -198,31 +198,31 @@ class Controller {
       if (event.code === 'Home' && !view.elements.progressBarInput.disabled) {
         player.media.currentTime = 0
 
-        view.showMessage('position', player)
+        view.showMessage('position')
       }
 
       if (event.code === 'ArrowLeft' && !event.ctrlKey && !view.elements.progressBarInput.disabled) {
         player.media.currentTime -= 5
 
-        view.showMessage('position', player)
+        view.showMessage('position')
       }
 
       if (event.code === 'ArrowRight' && !event.ctrlKey && !view.elements.progressBarInput.disabled) {
         player.media.currentTime += 5
 
-        view.showMessage('position', player)
+        view.showMessage('position')
       }
 
       if (event.code === 'ArrowLeft' && event.ctrlKey && !view.elements.progressBarInput.disabled) {
         player.media.currentTime -= 15
 
-        view.showMessage('position', player)
+        view.showMessage('position')
       }
 
       if (event.code === 'ArrowRight' && event.ctrlKey && !view.elements.progressBarInput.disabled) {
         player.media.currentTime += 15
 
-        view.showMessage('position', player)
+        view.showMessage('position')
       }
       
       if (event.code === 'KeyO' && event.ctrlKey) {
@@ -232,53 +232,53 @@ class Controller {
       if (event.code === 'Space') {
         view.elements.playPauseToggle.click()
         
-        view.showMessage('status', player)
+        view.showMessage('status')
       }
       
       if (event.code === 'KeyM') {
         view.elements.muteButton.click()
         
-        view.showMessage('volume', player)
+        view.showMessage('volume')
       }
       
       if (event.code === 'ArrowUp' && !event.ctrlKey) {
         view.elements.volumeSlider.value = parseFloat(view.elements.volumeSlider.value) + 0.05
         view.elements.volumeSlider.dispatchEvent(new Event('input'))
 
-        view.showMessage('volume', player)
+        view.showMessage('volume')
       }
 
       if (event.code === 'ArrowDown' && !event.ctrlKey) {
         view.elements.volumeSlider.value = parseFloat(view.elements.volumeSlider.value) - 0.05
         view.elements.volumeSlider.dispatchEvent(new Event('input'))
 
-        view.showMessage('volume', player)
+        view.showMessage('volume')
       }
 
       if (event.code === 'KeyS') {
         view.elements.resetSpeedButton.click()
 
-        view.showMessage('speed', player)
+        view.showMessage('speed')
       }
 
       if (event.code === 'ArrowUp' && event.ctrlKey) {
         view.elements.speedSlider.value = parseFloat(view.elements.speedSlider.value) + 0.05
         view.elements.speedSlider.dispatchEvent(new Event('input'))
 
-        view.showMessage('speed', player)
+        view.showMessage('speed')
       }
 
       if (event.code === 'ArrowDown' && event.ctrlKey) {
         view.elements.speedSlider.value = parseFloat(view.elements.speedSlider.value) - 0.05
         view.elements.speedSlider.dispatchEvent(new Event('input'))
 
-        view.showMessage('speed', player)
+        view.showMessage('speed')
       }
 
       if (event.code === 'KeyR') {
         view.elements.repeatToggle.click()
 
-        view.showMessage('repeat', player)
+        view.showMessage('repeat')
       }
 
       if (event.code === 'F11' && view.elements.fullscreenButton.disabled) {

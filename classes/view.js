@@ -4,9 +4,12 @@ const { formatSeconds } = require('../utils/helpers')
 const win = remote.getCurrentWindow()
 
 class View {
-  constructor(uiElements) {
+  constructor(uiElements, player) {
     this.elements = uiElements
+    this.player = player
+
     this.resizeVideo = this.resizeVideo.bind(this)
+
     this.volume = 1
     this.timer = null
   }
@@ -57,26 +60,26 @@ class View {
     this.elements.controlsToEnable.forEach(control => control.disabled = true)
   }
 
-  updateProgressBar(player) {
-    this.elements.progressBarInput.value = player.media.currentTime
+  updateProgressBar() {
+    this.elements.progressBarInput.value = this.player.media.currentTime
 
-    const current = player.media.currentTime
-    const duration = player.media.duration
+    const current = this.player.media.currentTime
+    const duration = this.player.media.duration
 
     this.elements.progressBarProgress.style.width = `${current * 100 / duration}%`
     this.elements.progressBarThumb.style.left = `${this.elements.progressBarProgress.offsetWidth - 1}px`
   }
 
-  showProgressBarInfo(player, event) {
+  showProgressBarInfo(event) {
     const inputWidth = this.elements.progressBarInput.offsetWidth
     const cursorPositionRelative = event.clientX - event.target.offsetLeft
-    const cursorPositionTime = player.media.duration * (cursorPositionRelative / inputWidth)
+    const cursorPositionTime = this.player.media.duration * (cursorPositionRelative / inputWidth)
     const infoWidth = this.elements.progressBarInfo.offsetWidth  
 
     if (cursorPositionRelative < 0) {
       this.elements.progressBarInfo.innerText = formatSeconds(0)  
     } else if (cursorPositionRelative > inputWidth) {
-      this.elements.progressBarInfo.innerText = formatSeconds(player.media.duration)
+      this.elements.progressBarInfo.innerText = formatSeconds(this.player.media.duration)
     } else {
       this.elements.progressBarInfo.innerText = formatSeconds(cursorPositionTime)
     }
@@ -90,16 +93,16 @@ class View {
     }
   }
 
-  updateTimeInfo(player) {
-    const position = formatSeconds(player.media.currentTime, player.media.duration)
-    const duration = formatSeconds(player.media.duration)
+  updateTimeInfo() {
+    const position = formatSeconds(this.player.media.currentTime, this.player.media.duration)
+    const duration = formatSeconds(this.player.media.duration)
 
     this.elements.timeInfo.innerText = `${position}/${duration}`
   }
 
-  updatePlayPauseToggle(player) {
-    this.elements.playPauseToggle.querySelector('i').innerText = player.isPaused ? 'play_arrow' : 'pause'
-    this.elements.playPauseToggle.title = player.isPaused ? 'Play' : 'Pause'
+  updatePlayPauseToggle() {
+    this.elements.playPauseToggle.querySelector('i').innerText = this.player.isPaused ? 'play_arrow' : 'pause'
+    this.elements.playPauseToggle.title = this.player.isPaused ? 'Play' : 'Pause'
   }
 
   updateMuteButton(volume) {
@@ -177,25 +180,25 @@ class View {
     }
   }
 
-  showMessage(messageType, player) {
+  showMessage(messageType) {
     if (win.isFullScreen()) {
       clearTimeout(this.timer)
 
       switch (messageType) {
         case 'status':
-          this.elements.message.innerText = player.isPaused ? 'Paused' : 'Playing'
+          this.elements.message.innerText = this.player.isPaused ? 'Paused' : 'Playing'
           break;
         case 'position':
-          this.elements.message.innerText = `${formatSeconds(player.media.currentTime)} / ${formatSeconds(player.media.duration)}`
+          this.elements.message.innerText = `${formatSeconds(this.player.media.currentTime)} / ${formatSeconds(this.player.media.duration)}`
           break;
         case 'volume':
-          this.elements.message.innerText = `Volume: ${Math.floor(player.media.volume * 100)}%`
+          this.elements.message.innerText = `Volume: ${Math.floor(this.player.media.volume * 100)}%`
           break;
         case 'speed':
-          this.elements.message.innerText = `Speed: ${player.media.playbackRate.toFixed(2)}x`
+          this.elements.message.innerText = `Speed: ${this.player.media.playbackRate.toFixed(2)}x`
           break;
         case 'repeat':
-          this.elements.message.innerText = player.media.loop ? 'Repeat: On' : 'Repeat: Off'
+          this.elements.message.innerText = this.player.media.loop ? 'Repeat: On' : 'Repeat: Off'
           break;
         default:
           this.elements.message.innerText = ''

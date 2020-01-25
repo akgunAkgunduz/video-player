@@ -1,3 +1,5 @@
+const { sanitizeFilePath } = require('../utils/helpers')
+
 class Player {
   constructor(mediaElement) {
     this.media = mediaElement
@@ -13,6 +15,10 @@ class Player {
 
   get isPaused() {
     return this.media.paused
+  }
+
+  loadFile(filePath) {
+    this.media.src = sanitizeFilePath(filePath)
   }
 
   play() {

@@ -3,16 +3,16 @@ class Player {
     this.media = mediaElement
   }
 
-  get isPaused() {
-    return this.media.paused
-  }
-
   get error() {
-    return this.media.error.code
+    return this.media.error
   }
 
   get isReady() {
     return this.media.readyState === 4
+  }
+
+  get isPaused() {
+    return this.media.paused
   }
 
   play() {

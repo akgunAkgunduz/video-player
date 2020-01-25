@@ -2,6 +2,7 @@ const path = require('path')
 const { ipcRenderer, remote } = require('electron')
 const Player = require('./player')
 const View = require('./view')
+const { setUpIpcRendererEvents } = require('../events/ipc-renderer')
 const { setUpKeyboardShortcuts } = require('../events/keyboard')
 const uiElements = require('../utils/ui-elements')
 const { sanitizeFilePath, isFileTypeSupported } = require('../utils/helpers')
@@ -198,14 +199,8 @@ class Controller {
     this.setUpEventListenersForPlayer()
     this.setUpEventListenersForView()
     this.setUpEventListenersForWindow()
+    setUpIpcRendererEvents(player, view)
     setUpKeyboardShortcuts(player, view)
-
-    ipcRenderer.on('selected-file', (event, filePath) => {
-      if (filePath) {
-        player.media.src = sanitizeFilePath(filePath)
-        view.updateAppTitle(path.basename(filePath))
-      }
-    })
   }
 }
 

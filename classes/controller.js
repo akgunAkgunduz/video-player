@@ -13,42 +13,12 @@ const view = new View(uiElements, player)
 
 class Controller {
   setUpEventListenersForPlayer() {
-    player.media.addEventListener('error', () => {
-      ipcRenderer.send('show-player-error-message-box', { code: player.media.error.code, message: player.media.error.message })
-      view.resetScene()
-    })
-
-    player.media.addEventListener('loadedmetadata', () => {
-      view.elements.progressBarInput.max = player.media.duration
-      view.resizeVideo()
-      view.removeDragAndDropInfo()
-      view.enableControls()
-    })
-
-    player.media.addEventListener('play', () => {
-      view.updatePlayPauseToggle()
-    })
-
-    player.media.addEventListener('pause', () => {
-      view.updatePlayPauseToggle()
-    })
-
-    player.media.addEventListener('timeupdate', () => {
-      view.updateProgressBar()
-      view.updateTimeInfo()
-    })
-
-    player.media.addEventListener('ended', () => {
-      view.updatePlayPauseToggle()
-    })
-
-    player.media.addEventListener('volumechange', () => {
-      view.updateVolumeElements(player.media.volume)
-    })
-
-    player.media.addEventListener('ratechange', () => {
-      view.updateSpeedElements(player.media.playbackRate)
-    })
+    player.on('error', view.handlePlayerError)
+    player.on('load', view.handlePlayerMediaLoad)
+    player.on(['play', 'pause', 'end'], view.updatePlayPauseToggle)
+    player.on('playback-position-change', view.updateTimeRelatedElements)
+    player.on('volume-change', view.updateVolumeElements)
+    player.on('speed-change', view.updateSpeedElements)
   }
 
   setUpEventListenersForView() {

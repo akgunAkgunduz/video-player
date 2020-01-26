@@ -1,4 +1,4 @@
-const { remote } = require('electron')
+const { remote, ipcRenderer } = require('electron')
 const { formatSeconds } = require('../utils/helpers')
 
 const win = remote.getCurrentWindow()
@@ -8,7 +8,13 @@ class View {
     this.elements = uiElements
     this.player = player
 
+    this.handlePlayerError = this.handlePlayerError.bind(this)
+    this.handlePlayerMediaLoad = this.handlePlayerMediaLoad.bind(this)
     this.resizeVideo = this.resizeVideo.bind(this)
+    this.updatePlayPauseToggle = this.updatePlayPauseToggle.bind(this)
+    this.updateTimeRelatedElements = this.updateTimeRelatedElements.bind(this)
+    this.updateVolumeElements = this.updateVolumeElements.bind(this)
+    this.updateSpeedElements = this.updateSpeedElements.bind(this)
 
     this.volume = 1
     this.timer = null
@@ -28,6 +34,18 @@ class View {
     this.elements.playPauseToggle.querySelector('i').innerText = 'play_arrow'
     this.elements.timeInfo.innerText = ''
     this.disableControls()
+  }
+
+  handlePlayerError() {
+    ipcRenderer.send('show-player-error-message-box', { code: this.player.error.code, message: this.player.error.message })
+    this.resetScene()
+  }
+
+  handlePlayerMediaLoad() {
+    this.elements.progressBarInput.max = this.player.media.duration
+    this.resizeVideo()
+    this.removeDragAndDropInfo()
+    this.enableControls()
   }
 
   resizeVideo() {
@@ -100,12 +118,19 @@ class View {
     this.elements.timeInfo.innerText = `${position}/${duration}`
   }
 
+  updateTimeRelatedElements() {
+    this.updateProgressBar()
+    this.updateTimeInfo()
+  }
+
   updatePlayPauseToggle() {
     this.elements.playPauseToggle.querySelector('i').innerText = this.player.isPaused ? 'play_arrow' : 'pause'
     this.elements.playPauseToggle.title = this.player.isPaused ? 'Play' : 'Pause'
   }
 
-  updateMuteButton(volume) {
+  updateMuteButton() {
+    const volume = this.player.media.volume
+
     this.elements.muteButton.title = volume > 0 ? 'Mute' : 'Unmute'
 
     if (volume === 0) {
@@ -124,15 +149,15 @@ class View {
     this.volume = newVolume
   }
 
-  updateVolumeElements(volume) {
-    this.updateMuteButton(volume)
-    this.elements.volumeSlider.value = volume
-    this.elements.volumeText.textContent = Math.floor(volume * 100) + '%'
+  updateVolumeElements() {
+    this.updateMuteButton()
+    this.elements.volumeSlider.value = this.player.media.volume
+    this.elements.volumeText.textContent = Math.floor(this.player.media.volume * 100) + '%'
   }
 
-  updateSpeedElements(speed) {
-    this.elements.speedSlider.value = speed
-    this.elements.speedText.textContent = speed.toFixed(2) + 'x'
+  updateSpeedElements() {
+    this.elements.speedSlider.value = this.player.media.playbackRate
+    this.elements.speedText.textContent = this.player.media.playbackRate.toFixed(2) + 'x'
   }
 
   updateRepeatToggle(repeat) {

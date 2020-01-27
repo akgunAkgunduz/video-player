@@ -22,6 +22,14 @@ class Controller {
   }
 
   setUpEventListenersForView() {
+    view.videoPreview.addEventListener('loadedmetadata', () => {
+      view.prepareThumbnail()
+    })
+
+    view.videoPreview.addEventListener('seeked', () => {
+      view.generateThumbnail()
+    })
+
     view.elements.videoContainer.addEventListener('dragover', (event) => event.preventDefault(), false)
 
     view.elements.videoContainer.addEventListener('dragleave', (event) => event.preventDefault(), false)

@@ -28,7 +28,7 @@
 
 #message {
   display: inline-block;
-  background-color: var(--color-transparent);
+  background-color: var(--color-transparent-primary);
   font-size: x-large;
   padding: 10px;
 }

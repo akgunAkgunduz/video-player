@@ -44,7 +44,8 @@
   height: 6px;
 }
 
-#progress-bar-input:enabled:hover ~ #progress-bar-info {
+#progress-bar-input:enabled:hover ~ #progress-bar-info,
+#progress-bar-input:enabled:hover ~ #progress-bar-video-preview-thumbnail {
   visibility: visible;
   opacity: 1;
 }
@@ -101,21 +102,35 @@
   position: relative;
   visibility: hidden;
   opacity: 0;
-  top: -41px;
+  top: -42px;
   width: 80px;
   height: 20px;
+  z-index: 9;
   line-height: 20px;
   font-size: 12px;
   padding: 0 8px;
   text-align: center;
-  color: var(--color-light-primary);
-  background-color: var(--color-dark-secondary);
+  color: white;
+  background-color: var(--color-transparent-secondary);
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.15);
   transition: opacity ease-out 0.25s;
 }
 
-#controls-container.in-fullscreen #progress-bar-info {
-  color: white;
-  background-color: var(--color-transparent);
-  box-shadow: none;
+#progress-bar-video-preview-thumbnail {
+  position: absolute;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  visibility: hidden;
+  opacity: 0;
+  width: 162px;
+  height: 92px;
+  z-index: 8;
+  bottom: 61px;
+  text-align: center;
+  background-color: black;
+  border: 1px solid black;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.15);
+  transition: opacity ease-out 0.25s;
 }

@@ -19,6 +19,8 @@ module.exports = {
   progressBarProgress: document.getElementById('progress-bar-progress'),
   progressBarBackground: document.getElementById('progress-bar-background'),
   progressBarInfo: document.getElementById('progress-bar-info'),
+  progressBarVideoPreviewThumbnail: document.getElementById('progress-bar-video-preview-thumbnail'),
+  progressBarVideoPreviewThumbnailCanvas: document.getElementById('progress-bar-video-preview-thumbnail-canvas'),
 
   openFileButton: document.getElementById('open-file-btn'),
   playPauseToggle: document.getElementById('play-pause-toggle'),

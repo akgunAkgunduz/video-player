@@ -18,6 +18,8 @@ class View {
 
     this.volume = 1
     this.timer = null
+    this.videoPreview = document.createElement('video')
+    this.videoPreviewAspectRatio = 16 / 9
   }
 
   updateAppTitle(newTitle) {
@@ -42,6 +44,7 @@ class View {
   }
 
   handlePlayerMediaLoad() {
+    this.setProgressBarPreviewVideo(this.player.media.src)
     this.elements.progressBarInput.max = this.player.media.duration
     this.resizeVideo()
     this.removeDragAndDropInfo()
@@ -92,10 +95,13 @@ class View {
     const inputWidth = this.elements.progressBarInput.offsetWidth
     const cursorPositionRelative = event.clientX - event.target.offsetLeft
     const cursorPositionTime = this.player.media.duration * (cursorPositionRelative / inputWidth)
-    const infoWidth = this.elements.progressBarInfo.offsetWidth  
+    const infoWidth = this.elements.progressBarInfo.offsetWidth
+    const thumbnailWidth = this.elements.progressBarVideoPreviewThumbnail.offsetWidth
+
+    this.videoPreview.currentTime = cursorPositionTime
 
     if (cursorPositionRelative < 0) {
-      this.elements.progressBarInfo.innerText = formatSeconds(0)  
+      this.elements.progressBarInfo.innerText = formatSeconds(0)
     } else if (cursorPositionRelative > inputWidth) {
       this.elements.progressBarInfo.innerText = formatSeconds(this.player.media.duration)
     } else {
@@ -109,6 +115,28 @@ class View {
     } else {
       this.elements.progressBarInfo.style.left = `${cursorPositionRelative - infoWidth / 2}px`
     }
+
+    if (event.clientX < (thumbnailWidth / 2) + 16 ) {
+      this.elements.progressBarVideoPreviewThumbnail.style.left = `${16}px`
+    } else if (event.clientX > inputWidth - (thumbnailWidth / 2) + 16) {
+      this.elements.progressBarVideoPreviewThumbnail.style.left = `${inputWidth - thumbnailWidth + 16}px`
+    } else {
+      this.elements.progressBarVideoPreviewThumbnail.style.left = `${this.elements.progressBarInfo.offsetLeft - 41}px`
+    }
+  }
+
+  setProgressBarPreviewVideo(src) {
+    this.videoPreview.src = src
+  }
+
+  prepareThumbnail() {
+    this.videoPreviewAspectRatio = this.videoPreview.videoWidth / this.videoPreview.videoHeight
+    this.elements.progressBarVideoPreviewThumbnailCanvas.setAttribute('width', 90 * this.videoPreviewAspectRatio)
+  }
+
+  generateThumbnail() {
+    const ctx = this.elements.progressBarVideoPreviewThumbnailCanvas.getContext('2d')
+    ctx.drawImage(this.videoPreview, 0, 0, 90 * this.videoPreviewAspectRatio, 90)
   }
 
   updateTimeInfo() {

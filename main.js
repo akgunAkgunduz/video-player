@@ -25,7 +25,8 @@ function createWindow() {
     show: false,
     icon: __dirname + '/images/player.ico',
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      devTools: !app.isPackaged
     }
   })
 
@@ -41,11 +42,14 @@ function createWindow() {
 
   mainWindow.once('ready-to-show', function() {
     mainWindow.show()
-    mainWindow.focus()
   })
 
   mainWindow.on('closed', function() {
     mainWindow = null
+  })
+
+  mainWindow.webContents.on('devtools-opened', function() {
+    mainWindow.focus()
   })
 }
 

@@ -49,9 +49,8 @@ class TitleBar {
         }
       })
 
+      keyboardShortcutsWindow.setMenu(null)
       keyboardShortcutsWindow.loadURL(keyboardShortcutsWindowPath)
-
-      // keyboardShortcutsWindow.webContents.openDevTools({ mode: 'detach' })
 
       keyboardShortcutsWindow.once('ready-to-show', () => {
         keyboardShortcutsWindow.show()

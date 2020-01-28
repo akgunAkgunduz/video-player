@@ -1,6 +1,5 @@
 const { app, BrowserWindow } = require('electron')
 const windowStateKeeper = require('electron-window-state')
-
 const { setUpIpcMainEvents } = require('./events/ipc-main')
 
 let mainWindow
@@ -30,15 +29,13 @@ function createWindow() {
     }
   })
 
-  mainWindow.setMenu(null)
-
-  mainWindow.loadFile('index.html')
-
-  mainWindow.webContents.openDevTools({ mode: 'detach' })
+  setUpIpcMainEvents(mainWindow)
 
   mainWindowState.manage(mainWindow)
 
-  setUpIpcMainEvents(mainWindow)
+  mainWindow.setMenu(null)
+  mainWindow.loadFile('index.html')
+  mainWindow.webContents.openDevTools({ mode: 'detach' })
 
   mainWindow.once('ready-to-show', function() {
     mainWindow.show()

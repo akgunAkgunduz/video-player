@@ -29,6 +29,8 @@ function createWindow() {
     }
   })
 
+  mainWindow.setMenu(null)
+
   mainWindow.loadFile('index.html')
 
   mainWindow.webContents.openDevTools({ mode: 'detach' })
